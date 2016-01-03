@@ -25,5 +25,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
     	<h2><c:out value="${requestScope.warn}" ></c:out></h2>	
+    	<a href="article.jsp">返回首页</a>
   </body>
 </html>

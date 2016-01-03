@@ -2,6 +2,7 @@ package cn.scau.edu.servlet;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.zip.DataFormatException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -16,6 +17,7 @@ import cn.scau.edu.dao.ArticleEvent;
 import cn.scau.edu.dao.ArticleEventImp;
 import cn.scau.edu.dao.RegisterEvent;
 import cn.scau.edu.dao.RegisterEventImp;
+import cn.scau.edu.pojo.Article;
 import cn.scau.edu.pojo.Author;
 import cn.scau.edu.util.ClassFactory;
 
@@ -41,6 +43,7 @@ public class Serv extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String operation = request.getParameter("operation");
+		System.out.println(operation);
 		if("regist".equals(operation)) {   							//如果是注册操作
 			Author author = new Author();
 			author.setName(request.getParameter("username"));
@@ -81,6 +84,94 @@ public class Serv extends HttpServlet {
 				request.getRequestDispatcher("error.jsp").forward(request, response);
 			}
 //System.out.println(author);
+		} else if("authorShow".equals(operation)) {  //展示用户信息
+			if(request.getSession().getAttribute("login") == null) {
+				request.setAttribute("state", "您还没登录呢...");
+				request.getRequestDispatcher("login.jsp").forward(request, response);
+				return ;
+			}
+			String id = request.getParameter("id");
+			System.out.println(id);
+			if(null == id || "".equals(id.trim())) {
+				request.setAttribute("warn", "敬爱的用户，你查找的用户不存在!!!");
+				request.getRequestDispatcher("error.jsp").forward(request, response);
+				return ;
+			}
+			int tid = 0;
+			try {
+				tid = Integer.parseInt(id);
+			} catch(NumberFormatException e) {
+				log.error(e);
+				e.printStackTrace();
+				request.setAttribute("warn", "敬爱的用户，你查找的用户不存在!!!");
+				request.getRequestDispatcher("error.jsp").forward(request, response);
+				return ;
+			}
+			Author author = null;
+			try {
+				author = re.show(tid);
+			} catch (SQLException e) {
+				log.error(e);
+				e.printStackTrace();
+				request.setAttribute("warn", "敬爱的用户，服务器出错，请稍后再试...");
+				request.getRequestDispatcher("error.jsp").forward(request, response);
+				return ;
+			}
+			
+			if(null == author) {
+				request.setAttribute("warn", "敬爱的用户，你查找的用户不存在!!!");
+				request.getRequestDispatcher("error.jsp").forward(request, response);
+				return ;
+			} else {
+				request.setAttribute("author", author);
+				request.getRequestDispatcher("show.jsp").forward(request, response);
+				return ;
+			}
+		} else if("loginCheck".equals(operation)) {
+			String username = request.getParameter("username");
+			String password = request.getParameter("password");
+			if(null == username || null == password || "".equals(username.trim()) || "".equals(password.trim())) {
+				request.setAttribute("state", "用户名或密码不能为空...");
+				request.getRequestDispatcher("login.jsp").forward(request, response);
+				return ;
+			}
+			Author author = null;
+			try {
+				author = re.checkAuthor(username, password);
+			} catch (SQLException e) {
+				log.error(e);
+				e.printStackTrace();
+				request.setAttribute("warn", "敬爱的用户，服务器出错，请稍后再试...");
+				request.getRequestDispatcher("error.jsp").forward(request, response);
+				return ;
+			}
+			if(null == author) {
+				request.setAttribute("state", "用户名或密码不正确...");
+				request.getRequestDispatcher("login.jsp").forward(request, response);
+				return ;
+			} else {
+				HttpSession session = request.getSession();
+				session.setAttribute("login", "login");
+				session.setAttribute("uname", author.getName());
+				session.setAttribute("id", author.getId());
+				request.getRequestDispatcher("article.jsp").forward(request, response);
+			}
+		} else if("postArticle".equals(operation)) {
+			String title = request.getParameter("title");
+			String cont = request.getParameter("cont");
+			String authid = request.getParameter("authorid");
+			if(title == null || "".equals(title.trim()) || cont == null || "".equals(cont.trim()) || authid == null || "".equals(authid.trim())) {
+				request.setAttribute("warn", "敬爱的用户，您的输入有问题，标题或主题可能为空...");
+				request.getRequestDispatcher("error.jsp").forward(request, response);
+				return;
+			}
+			title = title.trim();
+			cont = cont.trim();
+			authid = authid.trim();
+			//continue  tomarrow
+		} else {
+			request.getRequestDispatcher("article.jsp").forward(request, response);
+			return;
 		}
 	}
 

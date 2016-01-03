@@ -103,4 +103,14 @@ public class Article {
 		this.isleaf = isleaf;
 	}
 
+	@Override
+	public String toString() {
+		return "Article [id=" + id + ", pid=" + pid + ", rootid=" + rootid
+				+ ", title=" + title + ", cont=" + cont + ", pdate=" + pdate
+				+ ", isleaf=" + isleaf + ", scan=" + scan + ", authorid="
+				+ authorid + ", reply=" + reply + ", latestreply="
+				+ latestreply + "]";
+	}
+
+	
 }

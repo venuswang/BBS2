@@ -52,11 +52,15 @@
 							共同提高！谢绝任何形式的广告</p></td>
 						<c:choose>
 							<c:when test="${sessionScope.login != null || (sessionScope.login).equles(\"login\")}">
-								<td><a href=""><c:out value="${sessionScope.uname}"></c:out></a></td>
+								<c:url var="show" value="show.jsp">
+									<c:param name="id" value="${sessionScope.id}"></c:param>
+								</c:url>
+								<td><a href="${show}"><c:out value="${sessionScope.uname}"></c:out></a></td>
 								<td><a href="exit.jsp">退出</a></td>
 							</c:when>
 							<c:otherwise>
-								<td><a href="">登录</a></td>
+								
+								<td><a href="login.jsp">登录</a></td>
 								<td><a href="regist.jsp">注册</a></td>
 							</c:otherwise>
 						</c:choose>
@@ -71,9 +75,7 @@
 								src="images/post-16x16.gif" alt="发表新主题" border="0" height="16"
 								width="16"></td>
 						<td class="jive-icon-label"><a id="jive-post-thread"
-							href="http://bbs.chinajavaworld.com/post%21default.jspa?forumID=20">发表新主题</a>
-							<a
-							href="http://bbs.chinajavaworld.com/forum.jspa?forumID=20&amp;isBest=1"></a></td>
+							href="post.jsp?authorid=${sessionScope.id}">发表新主题</a>
 					</tr>
 				</tbody>
 			</table>

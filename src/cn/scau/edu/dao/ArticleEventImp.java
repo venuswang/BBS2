@@ -14,6 +14,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import cn.scau.edu.pojo.Article;
+import cn.scau.edu.util.ConnectionnResourseFree;
 import cn.scau.edu.util.JdbcUtil;
 
 /**
@@ -66,18 +67,7 @@ public class ArticleEventImp implements ArticleEvent {
 			num = rs.getInt("num");
 //System.out.println(num);
 		}	
-		if(null != con) {
-			con.close();
-			con = null;
-		}
-		if(null != ps) {
-			ps.close();
-			ps = null;
-		}
-		if(null != rs) {
-			rs.close();
-			rs = null;
-		}
+		ConnectionnResourseFree.free(con, ps, rs);
 		return num;
 	}
 
@@ -133,18 +123,7 @@ public class ArticleEventImp implements ArticleEvent {
 			articles.add(at);
 //System.out.println(at.getId());
 		}
-		if(null != con) {
-			con.close();
-			con = null;
-		}
-		if(null != ps) {
-			ps.close();
-			ps = null;
-		}
-		if(null != rs) {
-			rs.close();
-			rs = null;
-		}
+		ConnectionnResourseFree.free(con, ps, rs);
 		if(null != msmd) {
 			msmd = null;
 		}
@@ -153,5 +132,7 @@ public class ArticleEventImp implements ArticleEvent {
 		}
 		return articles;
 	}
+
+	
 
 }

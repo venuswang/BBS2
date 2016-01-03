@@ -6,7 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import cn.scau.edu.pojo.Article;
 import cn.scau.edu.pojo.Author;
+import cn.scau.edu.util.ConnectionnResourseFree;
 import cn.scau.edu.util.JdbcUtil;
 
 /**
@@ -67,18 +69,49 @@ public class RegisterEventImp implements RegisterEvent {
 		if (count > 0) {
 			flag = true;
 		}
-		if (null != con) {
-			con.close();
-			con = null;
-		}
-		if (null != ps) {
-			ps.close();
-			ps = null;
-		}
-		if (null != rs) {
-			rs.close();
-			rs = null;
-		}
+		ConnectionnResourseFree.free(con, ps, rs);
 		return flag;
+	}
+	
+	/*返回用户信息*/
+	@Override
+	public Author show(int id) throws SQLException {
+		Author author = null;
+		String sql = "select * from author where id = ?";
+		con = JdbcUtil.getConnection();
+		ps = con.prepareStatement(sql);
+		ps.setInt(1,id);
+		rs = ps.executeQuery();
+		if(rs.next()) {
+			author = new Author();
+			author.setSex(rs.getString("sex"));
+			author.setSlikes(rs.getString("slikes"));
+			author.setMlikes(rs.getString("mlikes"));
+			author.setIntroduce(rs.getString("introduce"));
+		}
+		ConnectionnResourseFree.free(con, ps, rs);
+		return author;
+	}
+
+	/**
+	 * 用于检查新登录用户是否已在数据库中存在，存在返回Author(voucherid,name)
+	 */
+	@Override
+	public Author checkAuthor(String username, String password)
+			throws SQLException {
+		Author author = null;
+		con = JdbcUtil.getConnection();
+		String sql = "select voucherid,name from voucher where name = ? and password = ?";
+		ps = con.prepareStatement(sql);
+		ps.setString(1, username);
+		ps.setString(2, password);
+		rs = ps.executeQuery();
+		if (rs.next()) {
+			author = new Author();
+			author.setId(rs.getInt("voucherid"));
+			author.setName(rs.getString("name"));
+		}
+		ConnectionnResourseFree.free(con, ps, rs);
+		return author;
 	}
 }

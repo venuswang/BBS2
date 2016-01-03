@@ -6,4 +6,6 @@ import cn.scau.edu.pojo.Author;
 
 public interface RegisterEvent {
 	public int addRegister(Author author) throws SQLException;
+
+	public boolean checkUser(String username) throws SQLException;
 }

@@ -9,11 +9,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import cn.scau.edu.dao.ArticleEvent;
 import cn.scau.edu.dao.ArticleEventImp;
 import cn.scau.edu.dao.RegisterEvent;
 import cn.scau.edu.dao.RegisterEventImp;
 import cn.scau.edu.pojo.Author;
+import cn.scau.edu.util.ClassFactory;
 
 /**
  * 属于mvc架构中的control层，逻辑处理的层次
@@ -21,8 +25,9 @@ import cn.scau.edu.pojo.Author;
  *
  */
 public class Serv extends HttpServlet {
-	private static ArticleEvent ae = new ArticleEventImp();
-	private static RegisterEvent re = new RegisterEventImp();
+	private static Log log = LogFactory.getLog(Serv.class);
+	private static ArticleEvent ae = ClassFactory.getInstance().getArticleEvent();
+	private static RegisterEvent re = ClassFactory.getInstance().getRegisterEvent();
 	/**
 	 * The doGet method of the servlet. <br>
 	 *
@@ -61,6 +66,7 @@ public class Serv extends HttpServlet {
 			try {
 				flag = re.addRegister(author);
 			} catch (SQLException e) {
+				log.error(e);
 				flag = -1;
 				e.printStackTrace();
 			}

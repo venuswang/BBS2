@@ -10,6 +10,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import cn.scau.edu.pojo.Article;
 import cn.scau.edu.util.JdbcUtil;
 
@@ -23,6 +26,7 @@ public class ArticleEventImp implements ArticleEvent {
 	private ResultSet rs = null;
 	private PreparedStatement ps = null;
 	private Connection con = null;
+	private static Log log = LogFactory.getLog(ArticleEventImp.class);
 	
 	@Override
 	public void addArticle(Article article) {
@@ -100,8 +104,10 @@ public class ArticleEventImp implements ArticleEvent {
 			try {
 				at = (Article)article.newInstance();
 			} catch (InstantiationException e1) {
+				log.error(e1);
 				e1.printStackTrace();
 			} catch (IllegalAccessException e1) {
+				log.error(e1);
 				e1.printStackTrace();
 			}
 			
@@ -112,10 +118,13 @@ public class ArticleEventImp implements ArticleEvent {
 //System.out.println(method[j].getName() + "\t" + rs.getObject(msmd.getColumnLabel(i)));
 							method[j].invoke(at, rs.getObject(msmd.getColumnLabel(i)));
 						} catch (IllegalAccessException e) {
+							log.error(e);
 							e.printStackTrace();
 						} catch (IllegalArgumentException e) {
+							log.error(e);
 							e.printStackTrace();
 						} catch (InvocationTargetException e) {
+							log.error(e);
 							e.printStackTrace();
 						}
 					}

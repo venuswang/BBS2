@@ -6,12 +6,16 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 /**
  * 
  * @author Administrator 创建一个线程池 ININUM ： 初始化线程数 MAXNUM ： 最大的线程数 presentNumber
  *         ：　现阶段连接池里有的数据库连接数
  */
 public class DataBasePool2 {
+	private static Log log = LogFactory.getLog(DataBasePool2.class);
 	private static String url = "jdbc:mysql://localhost:3306/bbs1";
 	private static String user = "root";
 	private static String password = "8880967wgj";
@@ -27,6 +31,7 @@ public class DataBasePool2 {
 		try {
 			Class.forName(className);
 		} catch (ClassNotFoundException e) {
+			log.error(e);
 			e.printStackTrace();
 			throw new MyException("没有找到数据库驱动类！！！");
 		}
@@ -77,6 +82,7 @@ public class DataBasePool2 {
 			this.dbpool.addLast(myph.bind(connection));
 			// this.dbpool.addLast(mc);
 		} else {
+			log.error("连接池已满");
 			throw new InstantiationError("连接池已满");
 		}
 	}

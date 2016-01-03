@@ -10,6 +10,7 @@ import cn.scau.edu.pojo.Author;
 import cn.scau.edu.util.JdbcUtil;
 
 /**
+ * 用来处理关于注册用户的操作
  * DAO层 用来处理关于用户的有关数据库存取及读取的操作
  * @author Administrator
  *
@@ -47,5 +48,37 @@ public class RegisterEventImp implements RegisterEvent {
 		flag = id;
 		return flag;
 	}
-
+	
+	/**
+	 * 用于检查新登录用户是否已在数据库中存在，存在返回true
+	 */
+	@Override
+	public synchronized boolean checkUser(String name) throws SQLException {
+		boolean flag = false;
+		con = JdbcUtil.getConnection();
+		String sql = "select count(*) as num from voucher where name = ?";
+		ps = con.prepareStatement(sql);
+		ps.setString(1, name);
+		rs = ps.executeQuery();
+		int count = 0;
+		if (rs.next()) {
+			count = rs.getInt("num");
+		}
+		if (count > 0) {
+			flag = true;
+		}
+		if (null != con) {
+			con.close();
+			con = null;
+		}
+		if (null != ps) {
+			ps.close();
+			ps = null;
+		}
+		if (null != rs) {
+			rs.close();
+			rs = null;
+		}
+		return flag;
+	}
 }

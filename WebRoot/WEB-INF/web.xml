@@ -2,31 +2,71 @@
 <web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
-
+	
+	<!-- 这是编码过滤器，随着服务器的启动而启动 -->
 	<filter>
 		<filter-name>encodeFilter</filter-name>
 		<filter-class>cn.scau.edu.servlet.EncodeFilter</filter-class>
 	</filter>
 
+	<!-- 这是处理各种请求的控制类 -->
 	<servlet>
 		<servlet-name>Serv</servlet-name>
 		<servlet-class>cn.scau.edu.servlet.Serv</servlet-class>
 	</servlet>
-
+	
 	<!-- <servlet>
 			 <servlet-name>InitServ</servlet-name>
 			 <servlet-class>cn.scau.edu.servlet.InitServ</servlet-class> 
 			<load-on-startup>1</load-on-startup> 
 		</servlet> 
 	-->
+	<!-- 服务器一启动就加载log4j配置文件的类Servlet   -->
+	  <servlet>
+	    <servlet-name>Log4JInitServlet</servlet-name>
+	    <servlet-class>cn.scau.edu.servlet.Log4JInitServlet</servlet-class>
+	     <init-param>  
+	            <param-name>log4j-properties-location</param-name>  
+	            <param-value>/WEB-INF/classes/log4j.properties</param-value>  
+	     </init-param> 
+	      <init-param>  
+	    	 <param-name>Log4jFileSavePath</param-name>
+	   		 <param-value>/WEB-INF/logs</param-value>
+	  	 </init-param> 
+	     <load-on-startup>1</load-on-startup>  
+	  </servlet>
+	  
+	  <!-- 用来测试日志的记录是否成功，包括输出到控制台和对应的目录的文件  -->
+	  <servlet>
+	    <servlet-name>Log4JTestServlet</servlet-name>
+	    <servlet-class>cn.scau.edu.test.Log4JTestServlet</servlet-class>
+	  </servlet>
+	  
+		  <!-- 用来Ajax验证是否登录名已经存在 -->
+	  <servlet>
+	    <servlet-name>CheckUserLogging</servlet-name>
+	    <servlet-class>cn.scau.edu.servlet.CheckUserLogging</servlet-class>
+	  </servlet>
+	  
+	 <servlet-mapping>
+	    <servlet-name>CheckUserLogging</servlet-name>
+	    <url-pattern>/CheckUserLogging</url-pattern>
+  	 </servlet-mapping>
+  	 
+	 <servlet-mapping>
+	   <servlet-name>Log4JTestServlet</servlet-name>
+	   <url-pattern>/test</url-pattern>
+	  </servlet-mapping>
+	   
+		<servlet-mapping>
+			<servlet-name>Serv</servlet-name>
+			<url-pattern>/servlet</url-pattern>
+		</servlet-mapping>
+		
+		<filter-mapping>
+			<filter-name>encodeFilter</filter-name>
+			<url-pattern>/*</url-pattern>
+		</filter-mapping>
+		
 	
-	<servlet-mapping>
-		<servlet-name>Serv</servlet-name>
-		<url-pattern>/servlet</url-pattern>
-	</servlet-mapping>
-	
-	<filter-mapping>
-		<filter-name>encodeFilter</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>
 </web-app>

@@ -57,7 +57,7 @@
 							</c:when>
 							<c:otherwise>
 								<td><a href="">登录</a></td>
-								<td><a href="userReg.html">注册</a></td>
+								<td><a href="regist.jsp">注册</a></td>
 							</c:otherwise>
 						</c:choose>
 				</tr>

@@ -10,6 +10,50 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<title>表单</title>
 		<script language=JavaScript src="images/regcheckdata.js"></script>
 		<meta http-equiv="content-type" content="text/html;charset=utf-8"> 
+		<script type="text/javascript">
+		/*function check() {
+			var s = form.username.value.trim();
+			if(s != null && s != "") {
+				return true;
+			}
+			alert("用户名不能为空或空格");
+			form.username.focus;
+			return false;
+		}
+		*/
+		
+		var xmlhttp;
+		function load(url,func) {
+			if(window.XMLHttpRequest) {
+				xmlhttp = new XMLHttpRequest;
+			} else {
+				xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			xmlhttp.onreadystatechange = func;
+			xmlhttp.open("post", url, true);
+			xmlhttp.send();
+		}
+		function checkUser(user) {
+			load("CheckUserLogging?username="+user,function() {
+				if(xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+					var msg = xmlhttp.responseText;
+					var obj = document.getElementById("message");
+					var btn = document.getElementById("regbutton");
+					/*alert(msg);*/
+					if(msg === "1") {
+						/*alert("xi");*/
+						obj.setAttribute("style", "color: green;");
+						obj.innerHTML = "可用的用户名";
+						btn.removeAttribute("disabled");
+					} else if(msg === "2") {
+						obj.setAttribute("style","color:red");
+						obj.innerHTML = "用户名已经存在";
+						btn.setAttribute("disabled", "");
+					}
+				}
+			});
+		}
+	</script>
 	</head>
 	<body>
 		<form name="form" action="servlet" method="post" onSubmit="return checkdata()">
@@ -20,7 +64,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<tr>
 					<td>用户名：</td>
 					<td>
-						<input type=text name="username" size="30" maxlength="10" >
+						<input type=text name="username" onblur="checkUser(this.value)" size="30" maxlength="30" >
+						<div id="message" style=""></div>
 					</td>
 				</tr>
 				<tr>
@@ -132,7 +177,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<tr>
 					<td></td>
 					<td>
-						<input type="submit" value="提交">
+						<input type="submit" id="regbutton" value="提交">
 						<input type="reset" value="重置">
 						<input type="hidden" name="operation" value="regist">
 					</td>

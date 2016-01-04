@@ -10,7 +10,15 @@
 			+ path + "/";
 %>
 <%--<c:out value="${applicationScope.count}"></c:out>--%>
-
+<c:choose>
+	<c:when test="${requestScope.articles == null}">
+		<c:url var="showArticles" value="servlet">
+			<c:param name="operation" value="showArticles"></c:param>
+			<c:param name="pageNo" value="${requestScope.pageNo}"></c:param>
+		</c:url>
+		<c:redirect url="${showArticles}"></c:redirect>
+	</c:when>
+</c:choose>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html>
@@ -62,7 +70,15 @@
 								
 								<td><a href="login.jsp">登录</a></td>
 								<td><a href="regist.jsp">注册</a></td>
+								<c:choose>
+									<c:when test="${sessionScope.loginer == null }">
+									</c:when>
+									<c:otherwise>
+										<td nowrap="nowrap" width="1%"><a href="loginerExit.jsp">退出</a></td>
+									</c:otherwise>
+								</c:choose>
 							</c:otherwise>
+							
 						</c:choose>
 				</tr>
 			</tbody>
@@ -82,25 +98,32 @@
 		</div>
 		<br>
 		<table border="0" cellpadding="3" cellspacing="0" width="100%">
+		<c:url var="upArticle" value="servlet">
+		<c:param name="operation" value="showArticles"></c:param>
+		<c:param name="pageNo" value="${requestScope.pageNo - 1}"></c:param>
+		</c:url>
+		<c:url var="downArticle" value="servlet">
+		<c:param name="operation" value="showArticles"></c:param>
+		<c:param name="pageNo" value="${requestScope.pageNo + 1}"></c:param>
+		</c:url>
+		<c:url var="FirstArticle" value="servlet">
+		<c:param name="operation" value="showArticles"></c:param>
+		<c:param name="pageNo" value="1"></c:param>
+		</c:url>
+		<c:url var="LastArticle" value="servlet">
+		<c:param name="operation" value="showArticles"></c:param>
+		<c:param name="pageNo" value="${requestScope.total}"></c:param>
+		</c:url>
 			<tbody>
 				<tr valign="top">
-					<td><span class="nobreak"> 页: 1,316 - <span
+					<td><span class="nobreak"> 页: ${requestScope.pageNo },${requestScope.total } - <span
 							class="jive-paginator"> [ <a
-								href="http://bbs.chinajavaworld.com/forum.jspa?forumID=20&amp;start=0&amp;isBest=0">上一页</a>
-								| <a
-								href="http://bbs.chinajavaworld.com/forum.jspa?forumID=20&amp;start=0&amp;isBest=0"
-								class="">1</a> <a
-								href="http://bbs.chinajavaworld.com/forum.jspa?forumID=20&amp;start=25&amp;isBest=0"
-								class="jive-current">2</a> <a
-								href="http://bbs.chinajavaworld.com/forum.jspa?forumID=20&amp;start=50&amp;isBest=0"
-								class="">3</a> <a
-								href="http://bbs.chinajavaworld.com/forum.jspa?forumID=20&amp;start=75&amp;isBest=0"
-								class="">4</a> <a
-								href="http://bbs.chinajavaworld.com/forum.jspa?forumID=20&amp;start=100&amp;isBest=0"
-								class="">5</a> <a
-								href="http://bbs.chinajavaworld.com/forum.jspa?forumID=20&amp;start=125&amp;isBest=0"
-								class="">6</a> | <a
-								href="http://bbs.chinajavaworld.com/forum.jspa?forumID=20&amp;start=50&amp;isBest=0">下一页</a>
+								href="${upArticle}">上一页</a>
+								| <a href="${FirstArticle }"
+								class="">首頁</a> |<a
+								href="${LastArticle}"
+								>尾頁</a> | <a
+								href="${downArticle }">下一页</a>
 								]
 						</span>
 					</span></td>
@@ -125,9 +148,9 @@
 										</tr>
 									</thead>
 									<tbody>
-									<%-- 
+									 
 										<!-- start -->
-										<c:forEach items="${applicationScope.articles}" var="article"
+										<c:forEach items="${requestScope.articles}" var="article"
 											varStatus="num">
 											<c:choose>
 												<c:when test="${num.count % 2 == 1}">
@@ -138,21 +161,33 @@
 																	height="16" width="16">
 																<!-- div-->
 															</div></td>
-														<td nowrap="nowrap" width="1%">&nbsp; &nbsp;</td>
-														<td class="jive-thread-name" width="95%"><a
+														<c:choose>
+															<c:when test="${sessionScope.loginer == null }">
+																<td nowrap="nowrap" width="1%">&nbsp;&nbsp;&nbsp;</td>
+															</c:when>
+															<c:otherwise>
+																<c:url var="deleteArticle" value="servlet">
+																	<c:param name="rootid" value="${article.rootid}"></c:param>
+																	<c:param name="operation" value="deleteArticle"></c:param>
+																</c:url>
+																<td nowrap="nowrap" width="1%"><a href="${deleteArticle }">删除</a></td>
+															</c:otherwise>
+														</c:choose>
+														
+														<td class="jive-thread-name" width="90%"><a
 															id="jive-thread-2"
-															href="http://bbs.chinajavaworld.com/thread.jspa?threadID=744234&amp;tstart=25">${article.title}</a></td>
+															href="detail.jsp?rootid=${article.rootid }">${article.title}</a></td>
 														<td class="jive-author" nowrap="nowrap" width="1%"><span
 															class=""> <a
-																href="http://bbs.chinajavaworld.com/profile.jspa?userID=226028">admin</a>
+																href="show.jsp?id=${article.authorid}">${article.authorName }</a>
 														</span></td>
-														<td class="jive-view-count" width="1%">52</td>
-														<td class="jive-msg-count" width="1%">2</td>
+														<td class="jive-view-count" width="1%">${article.scan}</td>
+														<td class="jive-msg-count" width="1%">${article.reply}</td>
 														<td class="jive-last" nowrap="nowrap" width="1%"><div
 																class="jive-last-post">
 																${article.pdate } <br> by: <a
-																	href="http://bbs.chinajavaworld.com/thread.jspa?messageID=780172#780172"
-																	title="downing114" style="">downing114 &#187;</a>
+																	href="show.jsp?id=${article.latestreply}"
+																	title="${article.lreplyName}" style="">${article.lreplyName} &#187;</a>
 															</div></td>
 													</tr>
 												</c:when>
@@ -164,28 +199,38 @@
 																	height="16" width="16">
 																<!-- div-->
 															</div></td>
-														<td nowrap="nowrap" width="1%">&nbsp; &nbsp;</td>
-														<td class="jive-thread-name" width="95%"><a
+														<c:choose>
+															<c:when test="${sessionScope.loginer == null }">
+																<td nowrap="nowrap" width="1%">&nbsp;&nbsp;&nbsp;</td>
+															</c:when>
+															<c:otherwise>
+																<c:url var="deleteArticle" value="servlet">
+																	<c:param name="rootid" value="${article.rootid}"></c:param>
+																	<c:param name="operation" value="deleteArticle"></c:param>
+																</c:url>
+																<td nowrap="nowrap" width="1%"><a href="${deleteArticle }">删除</a></td>
+															</c:otherwise>
+														</c:choose>
+														<td class="jive-thread-name" width="90%"><a
 															id="jive-thread-1"
-															href="http://bbs.chinajavaworld.com/thread.jspa?threadID=744236&amp;tstart=25">${article.title}</a></td>
+															href="detail.jsp?rootid=${article.rootid }">${article.title}</a></td>
 														<td class="jive-author" nowrap="nowrap" width="1%"><span
 															class=""> <a
-																href="http://bbs.chinajavaworld.com/profile.jspa?userID=226030">admin</a>
+																href="show.jsp?id=${article.authorid}">${article.authorName }</a>
 														</span></td>
-														<td class="jive-view-count" width="1%">104</td>
-														<td class="jive-msg-count" width="1%">5</td>
+														<td class="jive-view-count" width="1%">${article.scan}</td>
+														<td class="jive-msg-count" width="1%">${article.reply}</td>
 														<td class="jive-last" nowrap="nowrap" width="1%"><div
 																class="jive-last-post">
 																${article.pdate } <br> by: <a
-																	href="http://bbs.chinajavaworld.com/thread.jspa?messageID=780182#780182"
-																	title="jingjiangjun" style="">jingjiangjun &#187;</a>
+																	href="show.jsp?id=${article.latestreply}"
+																	title="${article.lreplyName}" style="">${article.lreplyName} &#187;</a>
 															</div></td>
 													</tr>
 												</c:otherwise>
 											</c:choose>
 										</c:forEach>
 										<!-- end -->
-								--%>
 									</tbody>
 								</table>
 							</div>

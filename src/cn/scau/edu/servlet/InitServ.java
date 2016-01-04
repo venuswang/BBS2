@@ -22,6 +22,7 @@ import cn.scau.edu.util.MyException;
  * 该servlet随tomcat的启动而启动
  * 没有<Servlet-mapping>
  */
+/*
 public class InitServ extends HttpServlet {
 	private static Log log = LogFactory.getLog(InitServ.class);
 	public InitServ() {}
@@ -42,3 +43,4 @@ public class InitServ extends HttpServlet {
 		}
 	}		
 }
+*/

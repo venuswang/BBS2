@@ -114,4 +114,25 @@ public class RegisterEventImp implements RegisterEvent {
 		ConnectionnResourseFree.free(con, ps, rs);
 		return author;
 	}
+
+	@Override
+	public boolean checkLoginer(String username, String password)
+			throws SQLException {
+		boolean flag = false;
+		con = JdbcUtil.getConnection();
+		String sql = "select count(*) as num from manager where name = ? and password = ?";
+		ps = con.prepareStatement(sql);
+		ps.setString(1, username);
+		ps.setString(2, password);
+		rs = ps.executeQuery();
+		int count = 0;
+		if (rs.next()) {
+			count = rs.getInt("num");
+		}
+		if (count > 0) {
+			flag = true;
+		}
+		ConnectionnResourseFree.free(con, ps, rs);
+		return flag;
+	}
 }

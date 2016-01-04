@@ -2,6 +2,7 @@ package cn.scau.edu.servlet;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.zip.DataFormatException;
 
 import javax.servlet.ServletException;
@@ -30,6 +31,7 @@ public class Serv extends HttpServlet {
 	private static Log log = LogFactory.getLog(Serv.class);
 	private static ArticleEvent ae = ClassFactory.getInstance().getArticleEvent();
 	private static RegisterEvent re = ClassFactory.getInstance().getRegisterEvent();
+	private static int showNum = 8;
 	/**
 	 * The doGet method of the servlet. <br>
 	 *
@@ -127,7 +129,7 @@ public class Serv extends HttpServlet {
 				request.getRequestDispatcher("show.jsp").forward(request, response);
 				return ;
 			}
-		} else if("loginCheck".equals(operation)) {
+		} else if("loginCheck".equals(operation)) {  //检查用户登录的密码和账号是否准确
 			String username = request.getParameter("username");
 			String password = request.getParameter("password");
 			if(null == username || null == password || "".equals(username.trim()) || "".equals(password.trim())) {
@@ -156,7 +158,7 @@ public class Serv extends HttpServlet {
 				session.setAttribute("id", author.getId());
 				request.getRequestDispatcher("article.jsp").forward(request, response);
 			}
-		} else if("postArticle".equals(operation)) {
+		} else if("postArticle".equals(operation)) {  //提交主帖操作
 			String title = request.getParameter("title");
 			String cont = request.getParameter("cont");
 			String authid = request.getParameter("authorid");
@@ -169,7 +171,245 @@ public class Serv extends HttpServlet {
 			cont = cont.trim();
 			authid = authid.trim();
 			//continue  tomarrow
-		} else {
+			int autherid = 0;
+			try {
+				autherid = Integer.parseInt(authid);
+			} catch(NumberFormatException e) {
+				log.error(e);
+				e.printStackTrace();
+				request.setAttribute("warn", "敬爱的用户，您的输入有问题，找不到您想找的页面...");
+				request.getRequestDispatcher("error.jsp").forward(request, response);
+				return;
+			}
+			Article article = new Article();
+			article.setAuthorid(autherid);
+			article.setCont(cont);
+			article.setTitle(title);
+			try {
+				ae.addArticle(article);
+			} catch (SQLException e) {
+				log.error(e);
+				e.printStackTrace();
+				request.setAttribute("warn", "敬爱的用户，服务器出错，请稍后再试...");
+				request.getRequestDispatcher("error.jsp").forward(request, response);
+				return ;
+			}
+			request.getRequestDispatcher("replyDeal.jsp").forward(request, response);
+			return;
+		} else if("showArticles".equals(operation)) {  //展示帖子
+			String pageNum = request.getParameter("pageNo");
+			int pageNo = 1;
+			if(null == pageNum || pageNum.trim().equals("")) {
+				pageNo = 1;
+			}
+			try {
+				pageNo = Integer.parseInt(pageNum);
+			} catch(NumberFormatException e) {
+				pageNo = 1;
+			}
+			if(pageNo < 1) {
+				pageNo = 1;
+			}
+			int total = 0;
+			try {
+				total = ae.count();
+			} catch (SQLException e) {
+				log.error(e);
+				e.printStackTrace();
+				request.setAttribute("warn", "敬爱的用户，服务器出错，请稍后再试...");
+				request.getRequestDispatcher("error.jsp").forward(request, response);
+				return ;
+			}
+			int totalMaxNum = (total % showNum == 0) ? (total / showNum) : (total / showNum + 1);
+			if(pageNo > totalMaxNum) {
+				pageNo = totalMaxNum;
+			}
+			int start = (pageNo - 1) * showNum;
+			List<Article> articles = null;
+			try {
+				articles = ae.getArticles(start, showNum);
+			} catch(SQLException e) {
+				log.error(e);
+				e.printStackTrace();
+				request.setAttribute("warn", "敬爱的用户，服务器出错，请稍后再试...");
+				request.getRequestDispatcher("error.jsp").forward(request, response);
+				return ;
+			}
+			request.setAttribute("pageNo", pageNo);
+			request.setAttribute("total", totalMaxNum);
+			request.setAttribute("articles", articles);
+			request.getRequestDispatcher("article.jsp").forward(request, response);
+			return ;
+		} else if("detailArticles".equals(operation)) {  //查看子帖
+			String id = request.getParameter("rootid");
+			if(id == null || id.trim().equals("")) {
+				request.setAttribute("warn", "敬爱的用户，找不到您想找的页面...");
+				request.getRequestDispatcher("error.jsp").forward(request, response);
+				return ;
+			}
+			int tid = 0;
+			try {	
+				tid = Integer.parseInt(id);
+			} catch(NumberFormatException e) {
+				log.error(e);
+				e.printStackTrace();
+				request.setAttribute("warn", "敬爱的用户，找不到您想找的页面...");
+				request.getRequestDispatcher("error.jsp").forward(request, response);
+				return ;
+			}
+			List<Article> articles = null;
+			boolean flag = false;
+			if(request.getSession().getAttribute("" + tid) == null) {
+				flag = true;
+			}
+			try {
+				articles = ae.findArticle(tid,flag);
+			} catch (SQLException e) {
+				log.error(e);
+				e.printStackTrace();
+				request.setAttribute("warn", "敬爱的用户，服务器出错，请稍后再试...");
+				request.getRequestDispatcher("error.jsp").forward(request, response);
+				return ;
+			}
+			if(articles == null || articles.size() == 0) {
+				request.setAttribute("warn", "敬爱的用户，找不到您想找的页面...");
+				request.getRequestDispatcher("error.jsp").forward(request, response);
+				return ;
+			}
+			if(flag) {
+				request.getSession().setAttribute(("" + tid),tid);
+			}
+			request.setAttribute("articles", articles);
+			request.getRequestDispatcher("detail.jsp").forward(request, response);
+			return;
+		} else if("replyArticle".equals(operation)) {  //回复帖子
+			String title = request.getParameter("title");
+			String cont = request.getParameter("cont");
+			String authid = request.getParameter("authorid");
+			String pid = request.getParameter("pid");
+			String rootid = request.getParameter("rootid");
+			String floor = request.getParameter("floor");
+			String replyName = request.getParameter("replyName");
+			if(title == null || "".equals(title.trim()) || cont == null || "".equals(cont.trim()) || authid == null || "".equals(authid.trim())) {
+				request.setAttribute("warn", "敬爱的用户，您的输入有问题，标题或主题可能为空...");
+				request.getRequestDispatcher("error.jsp").forward(request, response);
+				return;
+			}
+			if(pid == null || "".equals(pid.trim()) || rootid == null || "".equals(rootid.trim()) || replyName == null || "".equals(replyName.trim())) {
+				request.setAttribute("warn", "敬爱的用户，您的输入有问题，标题或主题可能为空...");
+				request.getRequestDispatcher("error.jsp").forward(request, response);
+				return;
+			}
+			title = title.trim();
+			cont = cont.trim();
+			authid = authid.trim();
+			pid = pid.trim();
+			rootid = rootid.trim();
+			replyName = replyName.trim();
+			cont = "to:#" + floor + "&nbsp;" + replyName + "<br />"  + cont;
+			int autherid = 0;
+			int tpid = 0;
+			int trootid = 0;
+			try {
+				autherid = Integer.parseInt(authid);
+				tpid = Integer.parseInt(pid);
+				trootid = Integer.parseInt(rootid);
+			} catch(NumberFormatException e) {
+				log.error(e);
+				e.printStackTrace();
+				request.setAttribute("warn", "敬爱的用户，您的输入有问题，找不到您想找的页面...");
+				request.getRequestDispatcher("error.jsp").forward(request, response);
+				return;
+			}
+			Article article = new Article();
+			article.setAuthorid(autherid);
+			article.setPid(tpid);
+			article.setRootid(trootid);
+			article.setCont(cont);
+			article.setTitle(title);
+			try {
+				ae.updateArticle(article);
+			} catch (SQLException e) {
+				log.error(e);
+				e.printStackTrace();
+				request.setAttribute("warn", "敬爱的用户，服务器出错，请稍后再试...");
+				request.getRequestDispatcher("error.jsp").forward(request, response);
+				return ;
+			}
+			request.getRequestDispatcher("replyDeal.jsp").forward(request, response);
+			return;
+		} else if("hloginCheck".equals(operation)) {  //用于后台管理员的登录
+			String username = request.getParameter("username");
+			String password = request.getParameter("password");
+			if(null == username || "".equals(username.trim()) || null == password || "".equals(password.trim())) {
+				request.setAttribute("warning", "敬爱管理员，您输入的账号或密码错误...");
+				request.getRequestDispatcher("loginer.jsp").forward(request, response);
+				return ;
+			}
+			username = username.trim();
+			password = password.trim();
+			boolean flag = false;
+			try {
+				flag = re.checkLoginer(username, password);
+			} catch (SQLException e) {
+				log.error(e);
+				e.printStackTrace();
+				request.setAttribute("warning", "敬爱管理员，您输入的账号或密码错误...");
+				request.getRequestDispatcher("loginer.jsp").forward(request, response);
+				return ;
+			}
+			if(flag == false) {
+				request.setAttribute("warning", "敬爱管理员，您输入的账号或密码错误...");
+				request.getRequestDispatcher("loginer.jsp").forward(request, response);
+				return ;
+			}
+			request.getSession().setAttribute("loginer", "loginer");
+			request.getRequestDispatcher("article.jsp").forward(request, response);
+			return ;
+		} else if("deleteArticle".equals(operation)) {  //管理员删除帖子
+			System.out.println("delete......");
+			String loginer = (String)request.getSession().getAttribute("loginer");
+			if(loginer == null || !loginer.equals("loginer")) {
+				request.setAttribute("warning", "敬爱管理员，请先登录...");
+				request.getRequestDispatcher("loginer.jsp").forward(request, response);
+				return ;
+			}
+			String rootid = request.getParameter("rootid");
+			if(null == rootid || "".equals(rootid.trim())) {
+				request.setAttribute("warn", "敬爱的管理员，您的操作有误,请正确操作...");
+				request.getRequestDispatcher("error.jsp").forward(request, response);
+				return ;
+			}
+			rootid = rootid.trim();
+			int id = 0;
+			try {
+				id = Integer.parseInt(rootid);
+			} catch(NumberFormatException e) {
+				log.error(e);
+				e.printStackTrace();
+				request.setAttribute("warn", "敬爱的管理员，您的操作有误,请正确操作...");
+				request.getRequestDispatcher("error.jsp").forward(request, response);
+				return ;
+			}
+			boolean flag = false;
+			try {
+				flag = ae.deleteArticle(id);
+			} catch (SQLException e) {
+				log.error(e);
+				e.printStackTrace();
+				request.setAttribute("warn", "敬爱的管理员，服务器出错，请稍后再试...");
+				request.getRequestDispatcher("error.jsp").forward(request, response);
+				return ;
+			}
+			if(!flag) {
+				request.setAttribute("warn", "敬爱的管理员，删除失败，可能该帖已经在数据库中不存在了...");
+				request.getRequestDispatcher("error.jsp").forward(request, response);
+				return ;
+			} else {
+				request.getRequestDispatcher("article.jsp").forward(request, response);
+				return ;
+			}
+		} else {   //默认返回帖子首页
 			request.getRequestDispatcher("article.jsp").forward(request, response);
 			return;
 		}

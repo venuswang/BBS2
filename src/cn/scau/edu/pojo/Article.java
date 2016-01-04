@@ -14,7 +14,26 @@ public class Article {
 	private int authorid; //作者ID
 	private int reply;  //已经回答的帖子数
 	private int latestreply; //最近回复的帖子ID
+	private String authorName;
+	private String lreplyName;
 	
+	
+	public String getAuthorName() {
+		return authorName;
+	}
+
+	public void setAuthorName(String authorName) {
+		this.authorName = authorName;
+	}
+
+	public String getLreplyName() {
+		return lreplyName;
+	}
+
+	public void setLreplyName(String lreplyName) {
+		this.lreplyName = lreplyName;
+	}
+
 	public int getScan() {
 		return scan;
 	}
@@ -109,8 +128,11 @@ public class Article {
 				+ ", title=" + title + ", cont=" + cont + ", pdate=" + pdate
 				+ ", isleaf=" + isleaf + ", scan=" + scan + ", authorid="
 				+ authorid + ", reply=" + reply + ", latestreply="
-				+ latestreply + "]";
+				+ latestreply + ", authorName=" + authorName + ", lreplyName="
+				+ lreplyName + "]";
 	}
+
+	
 
 	
 }

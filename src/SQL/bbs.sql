@@ -35,3 +35,12 @@ reply int,
 latestreply int,
 constraint text_author foreign key(authorid) references author(id)
 );
+
+use bbs1;
+create table manager
+(
+	id int primary key auto_increment,
+	name varchar(50) not null,
+	password varchar(50) not null
+);
+insert into manager values (null,'admin','admin');

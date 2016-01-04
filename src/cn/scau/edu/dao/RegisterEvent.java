@@ -6,6 +6,7 @@ import cn.scau.edu.pojo.Article;
 import cn.scau.edu.pojo.Author;
 
 public interface RegisterEvent {
+	public boolean checkLoginer(String username,String password) throws SQLException;
 	public int addRegister(Author author) throws SQLException;
 	public Author show(int id) throws SQLException;
 	public boolean checkUser(String username) throws SQLException;

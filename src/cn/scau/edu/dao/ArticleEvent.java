@@ -12,15 +12,15 @@ import cn.scau.edu.pojo.Article;
  */
 public interface ArticleEvent {
 	
-	public void addArticle(Article article);
+	public void addArticle(Article article) throws SQLException;
 	
-	public List<Article> findArticle(String title,int start,int limit);
+	public List<Article> findArticle(int rootid, boolean flag) throws SQLException;
 	
-	public boolean deleteArticle(int id);
+	public boolean deleteArticle(int rootid) throws SQLException ;
 	
-	public boolean updateArticle(Article article,int id);
+	public boolean updateArticle(Article article) throws SQLException;
 	
 	public int count() throws SQLException;
 	
-	public List<Article> preSixArticles() throws SQLException; 
+	public List<Article> getArticles(int start,int scope) throws SQLException; 
 }

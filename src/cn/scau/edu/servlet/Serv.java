@@ -46,10 +46,53 @@ public class Serv extends HttpServlet {
 			throws ServletException, IOException {
 		String operation = request.getParameter("operation");
 		System.out.println(operation);
-		if("regist".equals(operation)) {   							//如果是注册操作
+		if("regist".equals(operation)) {  //如果是注册操作
+			String username = request.getParameter("username");
+			String password = request.getParameter("pwd");
+			//start
+			if(null == username || null == password || "".equals(username.trim()) || "".equals(password.trim())) {
+				request.setAttribute("warnning", "用户名或密码不能为空...");
+				request.getRequestDispatcher("regist.jsp").forward(request, response);
+				return ;
+			}
+			username = username.trim();
+			password = password.trim();
+			String[] token = username.split("[(,;?)#%&*'\"|=]");
+			if(token.length > 1) {
+				request.setAttribute("warnning", "用户名或密码不正确(含有非法字符)...");
+				request.getRequestDispatcher("regist.jsp").forward(request, response);
+				return ;
+			}
+			token = password.split("[(,;?)#%&*'\"|=]");
+			if(token.length > 1) {
+				request.setAttribute("warnning", "用户名或密码不正确(含有非法字符)...");
+				request.getRequestDispatcher("regist.jsp").forward(request, response);
+				return ;
+			}
+			
+			if(username.length() > 35 || username.length() < 6 ||  password.length() > 17 || password.length() < 4) {
+				request.setAttribute("warnning", "用户名或密码不正确(超过或少于指定长度了)...");
+				request.getRequestDispatcher("regist.jsp").forward(request, response);
+				return ;
+			}
+			boolean fg = false;
+			try {
+				fg = re.checkUser(username);
+			} catch (SQLException e1) {
+				log.error(e1);
+				request.setAttribute("warn", "敬爱的用户，由于服务器出现暂时的抽风，你的注册没有成功，请稍后再注册，在这过程中给您造成的不便，妾身在这里向您赔不是了!!!");
+				request.getRequestDispatcher("error.jsp").forward(request, response);
+				return;
+			}
+			if(fg) {
+				request.setAttribute("warnning", "用户名已经存在，请换个名字...");
+				request.getRequestDispatcher("regist.jsp").forward(request, response);
+				return ;
+			}
+			//end
 			Author author = new Author();
-			author.setName(request.getParameter("username"));
-			author.setPassword(request.getParameter("pwd"));
+			author.setName(username);
+			author.setPassword(password);
 			author.setSex(request.getParameter("sex"));
 			String slikes = "";
 			String[] likes = request.getParameterValues("slikes");
@@ -134,6 +177,25 @@ public class Serv extends HttpServlet {
 			String password = request.getParameter("password");
 			if(null == username || null == password || "".equals(username.trim()) || "".equals(password.trim())) {
 				request.setAttribute("state", "用户名或密码不能为空...");
+				request.getRequestDispatcher("login.jsp").forward(request, response);
+				return ;
+			}
+			username = username.trim();
+			password = password.trim();
+			String[] token = username.split("[(,;?)#%&*'\"|=]");
+			if(token.length > 1) {
+				request.setAttribute("state", "用户名或密码不正确(含有非法字符)...");
+				request.getRequestDispatcher("login.jsp").forward(request, response);
+				return ;
+			}
+			token = password.split("[(,;?)#%&*'\"|=]");
+			if(token.length > 1) {
+				request.setAttribute("state", "用户名或密码不正确(含有非法字符)...");
+				request.getRequestDispatcher("login.jsp").forward(request, response);
+				return ;
+			}
+			if(username.length() > 35 || username.length() < 6 || password.length() > 17 || password.length() < 4) {
+				request.setAttribute("state", "用户名或密码不正确...");
 				request.getRequestDispatcher("login.jsp").forward(request, response);
 				return ;
 			}
@@ -348,6 +410,23 @@ public class Serv extends HttpServlet {
 			}
 			username = username.trim();
 			password = password.trim();
+			String[] token = username.split("[(,;?)#%&*'\"|=]");
+			if(token.length > 1) {
+				request.setAttribute("warning", "用户名或密码不正确(含有非法字符)...");
+				request.getRequestDispatcher("loginer.jsp").forward(request, response);
+				return ;
+			}
+			token = password.split("[(,;?)#%&*'\"|=]");
+			if(token.length > 1) {
+				request.setAttribute("warning", "用户名或密码不正确(含有非法字符)...");
+				request.getRequestDispatcher("loginer.jsp").forward(request, response);
+				return ;
+			}
+			if(username.length() > 35 || username.length() < 6 || password.length() > 17 || password.length() < 4) {
+				request.setAttribute("warning", "用户名或密码不正确...");
+				request.getRequestDispatcher("loginer.jsp").forward(request, response);
+				return ;
+			}
 			boolean flag = false;
 			try {
 				flag = re.checkLoginer(username, password);

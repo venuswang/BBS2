@@ -32,15 +32,30 @@ public class CheckUserLogging extends HttpServlet {
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		PrintWriter pw = response.getWriter();
+		String result = "";
 		String username = request.getParameter("username");
 		System.out.println(username);
-		if(null != username) {
-			username = username.trim();
+		if(username == null) {
+			result = "0";
+			pw.print(result);
+			return;
 		}
-		String result = "";
+		username = username.trim();
 		if("".equals(username)) {
 			result = "0";
 		} else {
+			String[] token = username.split("[(,;?)#%&*'\"|=]");
+			if(token.length > 1) {
+				result = "3";
+				pw.print(result);
+				return;
+			}
+			if(username.length() > 35 || username.length() < 6) {
+				result = "4";
+				pw.print(result);
+				return;
+			}
 			try {
 				boolean flag = register.checkUser(username);
 				if(flag) {
@@ -52,10 +67,8 @@ public class CheckUserLogging extends HttpServlet {
 				log.error(e);
 				e.printStackTrace();
 			}
-			
 		}
 		//System.out.println(result);
-		PrintWriter pw = response.getWriter();
 		pw.print(result);
 	}
 

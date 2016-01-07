@@ -59,7 +59,7 @@
 						<p class="jive-description">探讨Java语言基础知识,基本语法等 大家一起交流
 							共同提高！谢绝任何形式的广告</p></td>
 						<c:choose>
-							<c:when test="${sessionScope.login != null || (sessionScope.login).equles(\"login\")}">
+							<c:when test="${sessionScope.login != null && (sessionScope.login).equals(\"login\")}">
 								<c:url var="show" value="show.jsp">
 									<c:param name="id" value="${sessionScope.id}"></c:param>
 								</c:url>

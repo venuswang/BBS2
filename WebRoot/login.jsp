@@ -30,10 +30,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     			<td>${requestScope.state}</td>
     		</tr>
     		<tr>
-    			<td>用户名：<input type="text" name="username" required/></td>
+    			<td>用户名：<input type="text" name="username" size="30" maxlength="30" required/></td>
     		</tr>
     		<tr>
-    			<td>密&nbsp;码：<input type="password" name="password" required /></td>
+    			<td>密&nbsp;码：<input type="password" name="password" size="15" maxlength="12" required /></td>
     		</tr>
     		<tr>
     			<td><input type="submit" /> <input type="reset" /></td>

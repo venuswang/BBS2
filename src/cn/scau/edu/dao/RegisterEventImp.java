@@ -26,28 +26,34 @@ public class RegisterEventImp implements RegisterEvent {
 	public int addRegister(Author author) throws SQLException {
 		int flag = -1;
 		String sql = "insert into author(id,sex,slikes,mlikes,privince,introduce) values (null,?,?,?,?,?)";
-		con = JdbcUtil.getConnection();
-		ps = con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
-		ps.setString(1, author.getSex());
-		ps.setString(2, author.getSlikes());
-		ps.setString(3, author.getMlikes());
-		ps.setString(4, author.getPrivince());
-		ps.setString(5, author.getIntroduce());
-		con.setAutoCommit(false);
-		ps.executeUpdate();
-		rs = ps.getGeneratedKeys();
-		int id = 0;
-		if(rs.next()) {
-			id = rs.getInt(1);
+		try {
+			con = JdbcUtil.getConnection();
+			boolean autoCommit = con.getAutoCommit();
+			con.setAutoCommit(false);
+			ps = con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+			ps.setString(1, author.getSex());
+			ps.setString(2, author.getSlikes());
+			ps.setString(3, author.getMlikes());
+			ps.setString(4, author.getPrivince());
+			ps.setString(5, author.getIntroduce());
+			ps.executeUpdate();
+			rs = ps.getGeneratedKeys();
+			int id = 0;
+			if(rs.next()) {
+				id = rs.getInt(1);
+			}
+			String xsql = "insert into voucher(voucherid,name,password) values (?,?,?)";
+			ps = con.prepareStatement(xsql);
+			ps.setInt(1, id);
+			ps.setString(2, author.getName());
+			ps.setString(3, author.getPassword());
+			ps.executeUpdate();
+			con.commit();
+			con.setAutoCommit(autoCommit);
+			flag = id;
+		} finally {
+			ConnectionnResourseFree.free(con, ps, rs);
 		}
-		String xsql = "insert into voucher(voucherid,name,password) values (?,?,?)";
-		ps = con.prepareStatement(xsql);
-		ps.setInt(1, id);
-		ps.setString(2, author.getName());
-		ps.setString(3, author.getPassword());
-		ps.executeUpdate();
-		con.setAutoCommit(true);
-		flag = id;
 		return flag;
 	}
 	
@@ -57,19 +63,22 @@ public class RegisterEventImp implements RegisterEvent {
 	@Override
 	public synchronized boolean checkUser(String name) throws SQLException {
 		boolean flag = false;
-		con = JdbcUtil.getConnection();
-		String sql = "select count(*) as num from voucher where name = ?";
-		ps = con.prepareStatement(sql);
-		ps.setString(1, name);
-		rs = ps.executeQuery();
-		int count = 0;
-		if (rs.next()) {
-			count = rs.getInt("num");
+		try {
+			con = JdbcUtil.getConnection();
+			String sql = "select count(*) as num from voucher where name = ?";
+			ps = con.prepareStatement(sql);
+			ps.setString(1, name);
+			rs = ps.executeQuery();
+			int count = 0;
+			if (rs.next()) {
+				count = rs.getInt("num");
+			}
+			if (count > 0) {
+				flag = true;
+			}
+		} finally {
+			ConnectionnResourseFree.free(con, ps, rs);
 		}
-		if (count > 0) {
-			flag = true;
-		}
-		ConnectionnResourseFree.free(con, ps, rs);
 		return flag;
 	}
 	
@@ -77,19 +86,22 @@ public class RegisterEventImp implements RegisterEvent {
 	@Override
 	public Author show(int id) throws SQLException {
 		Author author = null;
-		String sql = "select * from author where id = ?";
-		con = JdbcUtil.getConnection();
-		ps = con.prepareStatement(sql);
-		ps.setInt(1,id);
-		rs = ps.executeQuery();
-		if(rs.next()) {
-			author = new Author();
-			author.setSex(rs.getString("sex"));
-			author.setSlikes(rs.getString("slikes"));
-			author.setMlikes(rs.getString("mlikes"));
-			author.setIntroduce(rs.getString("introduce"));
+		try {
+			String sql = "select * from author where id = ?";
+			con = JdbcUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setInt(1,id);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				author = new Author();
+				author.setSex(rs.getString("sex"));
+				author.setSlikes(rs.getString("slikes"));
+				author.setMlikes(rs.getString("mlikes"));
+				author.setIntroduce(rs.getString("introduce"));
+			}
+		} finally {
+			ConnectionnResourseFree.free(con, ps, rs);
 		}
-		ConnectionnResourseFree.free(con, ps, rs);
 		return author;
 	}
 
@@ -100,18 +112,21 @@ public class RegisterEventImp implements RegisterEvent {
 	public Author checkAuthor(String username, String password)
 			throws SQLException {
 		Author author = null;
-		con = JdbcUtil.getConnection();
-		String sql = "select voucherid,name from voucher where name = ? and password = ?";
-		ps = con.prepareStatement(sql);
-		ps.setString(1, username);
-		ps.setString(2, password);
-		rs = ps.executeQuery();
-		if (rs.next()) {
-			author = new Author();
-			author.setId(rs.getInt("voucherid"));
-			author.setName(rs.getString("name"));
+		try {
+			con = JdbcUtil.getConnection();
+			String sql = "select voucherid,name from voucher where name = ? and password = ?";
+			ps = con.prepareStatement(sql);
+			ps.setString(1, username);
+			ps.setString(2, password);
+			rs = ps.executeQuery();
+			if (rs.next()) {
+				author = new Author();
+				author.setId(rs.getInt("voucherid"));
+				author.setName(rs.getString("name"));
+			}
+		} finally {
+			ConnectionnResourseFree.free(con, ps, rs);
 		}
-		ConnectionnResourseFree.free(con, ps, rs);
 		return author;
 	}
 
@@ -119,20 +134,23 @@ public class RegisterEventImp implements RegisterEvent {
 	public boolean checkLoginer(String username, String password)
 			throws SQLException {
 		boolean flag = false;
-		con = JdbcUtil.getConnection();
-		String sql = "select count(*) as num from manager where name = ? and password = ?";
-		ps = con.prepareStatement(sql);
-		ps.setString(1, username);
-		ps.setString(2, password);
-		rs = ps.executeQuery();
-		int count = 0;
-		if (rs.next()) {
-			count = rs.getInt("num");
+		try {
+			con = JdbcUtil.getConnection();
+			String sql = "select count(*) as num from manager where name = ? and password = ?";
+			ps = con.prepareStatement(sql);
+			ps.setString(1, username);
+			ps.setString(2, password);
+			rs = ps.executeQuery();
+			int count = 0;
+			if (rs.next()) {
+				count = rs.getInt("num");
+			}
+			if (count > 0) {
+				flag = true;
+			}
+		} finally {
+			ConnectionnResourseFree.free(con, ps, rs);
 		}
-		if (count > 0) {
-			flag = true;
-		}
-		ConnectionnResourseFree.free(con, ps, rs);
 		return flag;
 	}
 }

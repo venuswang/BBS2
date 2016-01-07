@@ -21,8 +21,8 @@ public class DataBasePool2 {
 	private static String password = "8880967wgj";
 	private static String className = "com.mysql.jdbc.Driver";
 	private static LinkedList<Connection> dbpool = new LinkedList<Connection>();
-	private int ININUM = 10;
-	private int MAXNUM = 15;
+	private int ININUM = 100;
+	private int MAXNUM = 1000;
 	private int presentNumber;
 
 	private MyProxyHandle myph = null;
@@ -98,7 +98,8 @@ public class DataBasePool2 {
 			connection = dbpool.removeFirst();
 			// this.presentNumber --;
 		}
-
+		//System.out.println(connection);
+		log.debug(connection);
 		return connection;
 	}
 }

@@ -1,6 +1,5 @@
 function checkdata() {
 	var ssn=form.username.value.toLowerCase();
-	
 	if (!checkUserName(ssn)) return false;  //用户名检查
 	
 	if( strlen(form.pwd.value)<6 || strlen(form.pwd.value)>16 ) {
@@ -44,11 +43,14 @@ function checkdata() {
 		return false;
 	}
 	
-	if(form.intro.value == "") {
+	
+	
+	if(form.intro.value.trim() == "" || isWhiteWpace(form.intro.value)) {
 		alert("\自我介绍不能为空!");
 		form.intro.focus();
 		return false;
-	}
+	} 
+	
 	return true;
 }
 
@@ -63,11 +65,12 @@ function checkUserName(ssn){
 		form.username.focus()
 		return false;
 	}
-	if (!isSsnString(ssn)){
+	/*if (!isSsnString(ssn)){
 		alert("\    对不起，您选择的用户名不正确或已被占用！用户名\n由a～z的英文字母(不区分大小写)、0～9的数字、点、减\n号或下划线组成，长度为3～18个字符，只能以数字或字母\n开头和结尾,例如:kyzy_001。")
 		form.username.focus()
 		return false;
 	}
+	*/
 	return true;
 }
 

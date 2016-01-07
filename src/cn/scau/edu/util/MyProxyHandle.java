@@ -5,6 +5,9 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 import java.sql.Connection;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 /**
  * 使用动态代理   修正数据库连接在调用close方法时的连接关闭问题
  * @author Administrator
@@ -14,9 +17,10 @@ import java.sql.Connection;
 public class MyProxyHandle implements InvocationHandler {
 	private Connection realConnection = null;
 	private Connection reflectConnection = null;
+	private static Log log = LogFactory.getLog(MyProxyHandle.class);
 	private DataBasePool2 dbp2 = null;
 	private int USERNUM = 0;
-	private int USERMAX = 10;
+	private int USERMAX = 1000;
 	
 	public MyProxyHandle(DataBasePool2 dbp2) {
 		this.dbp2 = dbp2;
@@ -31,6 +35,7 @@ public class MyProxyHandle implements InvocationHandler {
 	public Object invoke(Object proxy, Method method, Object[] args)
 			throws Throwable {
 		if("close".equals(method.getName())) {
+			log.debug(reflectConnection + "close\n");
 			USERNUM ++;
 			if(USERNUM < USERMAX) {
 				dbp2.free(reflectConnection);

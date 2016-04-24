@@ -2,12 +2,16 @@ package cn.scau.edu.util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.LinkedList;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
+import com.mysql.jdbc.exceptions.jdbc4.CommunicationsException;
 
 /**
  * 
@@ -21,6 +25,7 @@ public class DataBasePool2 {
 	private static String password = "8880967wgj";
 	private static String className = "com.mysql.jdbc.Driver";
 	private static LinkedList<Connection> dbpool = new LinkedList<Connection>();
+	private long lastUseTime = 0;
 	private int ININUM = 100;
 	private int MAXNUM = 1000;
 	private int presentNumber;
@@ -37,6 +42,37 @@ public class DataBasePool2 {
 		}
 	}
 
+	public long getLastUseTime() {
+		return lastUseTime;
+	}
+
+	public void setLastUseTime(long lastUseTime) {
+		this.lastUseTime = lastUseTime;
+	}
+	
+	public void checkConnection() throws SQLException {
+		this.setLastUseTime(System.currentTimeMillis());
+		for(int j = 0; j < dbpool.size(); j++) {
+			Connection connection = dbpool.get(j);
+			Statement state = null;
+			ResultSet rs = null;
+			try {
+				state = connection.createStatement();
+				rs = state.executeQuery("select voucherid from voucher where voucherid = 1");
+			} catch(CommunicationsException e) {
+				log.error(e);
+				connection = null;
+				this.dbpool.set(j,null);
+				connection = DriverManager.getConnection(url, user, password);
+				myph = new MyProxyHandle(this);
+				this.dbpool.set(j, myph.bind(connection));
+			} finally {
+				connection = null;
+				ConnectionnResourseFree.free(null, state, rs);
+			}
+		}
+	}
+	
 	public int getPresentNumber() {
 		return presentNumber;
 	}
@@ -46,6 +82,7 @@ public class DataBasePool2 {
 	}
 
 	public DataBasePool2() throws SQLException {
+		lastUseTime = System.currentTimeMillis();
 		synchronized (DataBasePool2.class) {
 			for (int i = 0; i < ININUM; i++) {
 				Connection connection = createConnection();
@@ -92,13 +129,28 @@ public class DataBasePool2 {
 		Connection connection = null;
 		if (0 != dbpool.size()) {
 			connection = dbpool.removeFirst();
+			Statement state = null;
+			ResultSet rs = null;
+			try {
+				 log.debug("开始检验连接的有效性");
+				 state = connection.createStatement();
+				 rs = state.executeQuery("select voucherid from voucher where voucherid = 1");
+			} catch(CommunicationsException e) {
+				log.debug(e);
+				connection = null;
+				connection = DriverManager.getConnection(url, user, password);
+				myph = new MyProxyHandle(this);
+				connection = myph.bind(connection);
+			} finally {
+				ConnectionnResourseFree.free(null, state, rs);
+			}
 			// this.presentNumber --;
 		} else {
 			addConnection();
 			connection = dbpool.removeFirst();
 			// this.presentNumber --;
 		}
-		//System.out.println(connection);
+		// System.out.println(connection);
 		log.debug(connection);
 		return connection;
 	}

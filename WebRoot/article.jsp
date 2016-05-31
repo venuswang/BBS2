@@ -58,38 +58,40 @@
 							(模仿)</p>
 						<p class="jive-description">探讨Java语言基础知识,基本语法等 大家一起交流
 							共同提高！谢绝任何形式的广告</p></td>
-						<c:choose>
-							<c:when test="${sessionScope.login != null && (sessionScope.login).equals(\"login\")}">
-								<c:url var="show" value="show.jsp">
-									<c:param name="id" value="${sessionScope.id}"></c:param>
-								</c:url>
-								<td><a href="${show}"><c:out value="${sessionScope.uname}"></c:out></a></td>
-								<td><a href="exit.jsp">退出</a></td>
-							</c:when>
-							<c:otherwise>
-								
-								<td><a href="login.jsp">登录</a></td>
-								<td><a href="regist.jsp">注册</a></td>
-								<c:choose>
-									<c:when test="${sessionScope.loginer == null }">
-									</c:when>
-									<c:otherwise>
-										<td nowrap="nowrap" width="1%"><a href="loginerExit.jsp">退出</a></td>
-									</c:otherwise>
-								</c:choose>
-							</c:otherwise>
-							
-						</c:choose>
+					<c:choose>
+						<c:when
+							test="${sessionScope.login != null && (sessionScope.login).equals(\"login\")}">
+							<c:url var="show" value="show.jsp">
+								<c:param name="id" value="${sessionScope.id}"></c:param>
+							</c:url>
+							<td><a href="${show}"><c:out
+										value="${sessionScope.uname}"></c:out></a></td>
+							<td><a href="exit.jsp">退出</a></td>
+						</c:when>
+						<c:otherwise>
+
+							<td><a href="login.jsp">登录</a></td>
+							<td><a href="regist.jsp">注册</a></td>
+							<c:choose>
+								<c:when test="${sessionScope.loginer == null }">
+								</c:when>
+								<c:otherwise>
+									<td nowrap="nowrap" width="1%"><a href="loginerExit.jsp">退出</a></td>
+								</c:otherwise>
+							</c:choose>
+						</c:otherwise>
+
+					</c:choose>
 				</tr>
 			</tbody>
-		</table><p></p>
+		</table>
+		<p></p>
 		<div class="jive-buttons">
 			<table summary="Buttons" border="0" cellpadding="0" cellspacing="0">
 				<tbody>
 					<tr>
-						<td class="jive-icon"><img
-								src="images/post-16x16.gif" alt="发表新主题" border="0" height="16"
-								width="16"></td>
+						<td class="jive-icon"><img src="images/post-16x16.gif"
+							alt="发表新主题" border="0" height="16" width="16"></td>
 						<td class="jive-icon-label"><a id="jive-post-thread"
 							href="post.jsp?authorid=${sessionScope.id}">发表新主题</a>
 					</tr>
@@ -98,33 +100,29 @@
 		</div>
 		<br>
 		<table border="0" cellpadding="3" cellspacing="0" width="100%">
-		<c:url var="upArticle" value="servlet">
-		<c:param name="operation" value="showArticles"></c:param>
-		<c:param name="pageNo" value="${requestScope.pageNo - 1}"></c:param>
-		</c:url>
-		<c:url var="downArticle" value="servlet">
-		<c:param name="operation" value="showArticles"></c:param>
-		<c:param name="pageNo" value="${requestScope.pageNo + 1}"></c:param>
-		</c:url>
-		<c:url var="FirstArticle" value="servlet">
-		<c:param name="operation" value="showArticles"></c:param>
-		<c:param name="pageNo" value="1"></c:param>
-		</c:url>
-		<c:url var="LastArticle" value="servlet">
-		<c:param name="operation" value="showArticles"></c:param>
-		<c:param name="pageNo" value="${requestScope.total}"></c:param>
-		</c:url>
+			<c:url var="upArticle" value="servlet">
+				<c:param name="operation" value="showArticles"></c:param>
+				<c:param name="pageNo" value="${requestScope.pageNo - 1}"></c:param>
+			</c:url>
+			<c:url var="downArticle" value="servlet">
+				<c:param name="operation" value="showArticles"></c:param>
+				<c:param name="pageNo" value="${requestScope.pageNo + 1}"></c:param>
+			</c:url>
+			<c:url var="FirstArticle" value="servlet">
+				<c:param name="operation" value="showArticles"></c:param>
+				<c:param name="pageNo" value="1"></c:param>
+			</c:url>
+			<c:url var="LastArticle" value="servlet">
+				<c:param name="operation" value="showArticles"></c:param>
+				<c:param name="pageNo" value="${requestScope.total}"></c:param>
+			</c:url>
 			<tbody>
 				<tr valign="top">
-					<td><span class="nobreak"> 页: ${requestScope.pageNo },${requestScope.total } - <span
-							class="jive-paginator"> [ <a
-								href="${upArticle}">上一页</a>
-								| <a href="${FirstArticle }"
-								class="">首頁</a> |<a
-								href="${LastArticle}"
-								>尾頁</a> | <a
-								href="${downArticle }">下一页</a>
-								]
+					<td><span class="nobreak"> 页: ${requestScope.pageNo },${requestScope.total }
+							- <span class="jive-paginator"> [ <a href="${upArticle}">上一页</a>
+								| <a href="${FirstArticle }" class="">首頁</a> |<a
+								href="${LastArticle}">尾頁</a> | <a
+								href="${downArticle }">下一页</a> ]
 						</span>
 					</span></td>
 				</tr>
@@ -148,7 +146,7 @@
 										</tr>
 									</thead>
 									<tbody>
-									 
+
 										<!-- start -->
 										<c:forEach items="${requestScope.articles}" var="article"
 											varStatus="num">
@@ -170,10 +168,11 @@
 																	<c:param name="rootid" value="${article.rootid}"></c:param>
 																	<c:param name="operation" value="deleteArticle"></c:param>
 																</c:url>
-																<td nowrap="nowrap" width="1%"><a href="${deleteArticle }">删除</a></td>
+																<td nowrap="nowrap" width="1%"><a
+																	href="${deleteArticle }">删除</a></td>
 															</c:otherwise>
 														</c:choose>
-														
+
 														<td class="jive-thread-name" width="90%"><a
 															id="jive-thread-2"
 															href="detail.jsp?rootid=${article.rootid }">${article.title}</a></td>
@@ -187,7 +186,8 @@
 																class="jive-last-post">
 																${article.pdate } <br> by: <a
 																	href="show.jsp?id=${article.latestreply}"
-																	title="${article.lreplyName}" style="">${article.lreplyName} &#187;</a>
+																	title="${article.lreplyName}" style="">${article.lreplyName}
+																	&#187;</a>
 															</div></td>
 													</tr>
 												</c:when>
@@ -208,7 +208,8 @@
 																	<c:param name="rootid" value="${article.rootid}"></c:param>
 																	<c:param name="operation" value="deleteArticle"></c:param>
 																</c:url>
-																<td nowrap="nowrap" width="1%"><a href="${deleteArticle }">删除</a></td>
+																<td nowrap="nowrap" width="1%"><a
+																	href="${deleteArticle }">删除</a></td>
 															</c:otherwise>
 														</c:choose>
 														<td class="jive-thread-name" width="90%"><a
@@ -224,7 +225,8 @@
 																class="jive-last-post">
 																${article.pdate } <br> by: <a
 																	href="show.jsp?id=${article.latestreply}"
-																	title="${article.lreplyName}" style="">${article.lreplyName} &#187;</a>
+																	title="${article.lreplyName}" style="">${article.lreplyName}
+																	&#187;</a>
 															</div></td>
 													</tr>
 												</c:otherwise>

@@ -286,6 +286,9 @@ public class Serv extends HttpServlet {
 			if(pageNo > totalMaxNum) {
 				pageNo = totalMaxNum;
 			}
+			if(pageNo < 1) {
+				pageNo = 1;
+			}
 			int start = (pageNo - 1) * showNum;
 			List<Article> articles = null;
 			try {

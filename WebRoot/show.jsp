@@ -46,7 +46,8 @@
 	<table border="1" align="center">
 		<tr>
 			<td>&nbsp;</td>
-			<td>用户信息</td></tr>
+			<td>用户信息</td>
+		</tr>
 		<tr>
 			<td>姓名：</td>
 			<td>${sessionScope.uname}</td>
@@ -68,6 +69,8 @@
 			<td>${requestScope.author.introduce}</td>
 		</tr>
 	</table>
-	<center><a href="article.jsp">返回首页</a></center>
+	<center>
+		<a href="article.jsp">返回首页</a>
+	</center>
 </body>
 </html>

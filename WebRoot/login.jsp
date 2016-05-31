@@ -7,39 +7,41 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
-  <head>
-    <base href="<%=basePath%>">
-    
-    <title>login page</title>
-    
-	<meta http-equiv="pragma" content="no-cache">
-	<meta http-equiv="cache-control" content="no-cache">
-	<meta http-equiv="expires" content="0">    
-	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-	<meta http-equiv="description" content="This is my page">
-	<!--
+<head>
+<base href="<%=basePath%>">
+
+<title>login page</title>
+
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">
+<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+<meta http-equiv="description" content="This is my page">
+<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
 
-  </head>
-  
-  <body>
-    <form action="servlet" method="post">
-    	<table>
-    		<tr>
-    			<td>${requestScope.state}</td>
-    		</tr>
-    		<tr>
-    			<td>用户名：<input type="text" name="username" size="30" maxlength="30" required/></td>
-    		</tr>
-    		<tr>
-    			<td>密&nbsp;码：<input type="password" name="password" size="15" maxlength="12" required /></td>
-    		</tr>
-    		<tr>
-    			<td><input type="submit" /> <input type="reset" /></td>
-    		</tr>
-    	</table>
-    	<input type="hidden" name="operation" value="loginCheck"/> 
-    </form>
-  </body>
+</head>
+
+<body>
+	<form action="servlet" method="post">
+		<table>
+			<tr>
+				<td>${requestScope.state}</td>
+			</tr>
+			<tr>
+				<td>用户名：<input type="text" name="username" size="30"
+					maxlength="30" required /></td>
+			</tr>
+			<tr>
+				<td>密&nbsp;码：<input type="password" name="password" size="15"
+					maxlength="12" required /></td>
+			</tr>
+			<tr>
+				<td><input type="submit" /> <input type="reset" /></td>
+			</tr>
+		</table>
+		<input type="hidden" name="operation" value="loginCheck" />
+	</form>
+</body>
 </html>

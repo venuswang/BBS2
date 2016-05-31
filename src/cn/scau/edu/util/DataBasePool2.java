@@ -26,8 +26,8 @@ public class DataBasePool2 {
 	private static String className = "com.mysql.jdbc.Driver";
 	private static LinkedList<Connection> dbpool = new LinkedList<Connection>();
 	private long lastUseTime = 0;
-	private int ININUM = 100;
-	private int MAXNUM = 1000;
+	private int ININUM = 10;
+	private int MAXNUM = 15;
 	private int presentNumber;
 
 	private MyProxyHandle myph = null;

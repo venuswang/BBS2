@@ -447,6 +447,7 @@ public class Serv extends HttpServlet {
 				return ;
 			}
 			request.getSession().setAttribute("loginer", "loginer");
+			request.getSession().setAttribute("login", "login");
 			request.getRequestDispatcher("article.jsp").forward(request, response);
 			return ;
 		} else if("deleteArticle".equals(operation)) {  //管理员删除帖子

@@ -40,6 +40,46 @@
 	<script src="js/jquery-1.12.3.min.js"></script>
 	<script src="js/jquery.validate.min.js"></script>
 	<script src="js/form.min.js"></script>
+	<style type="text/css">
+		.article-item  {
+			position: relative;
+			margin-top: 15px;
+		}
+		.article-item:first-child {
+			border-top: 1px solid #dedede;
+			padding-top: 15px;
+		}
+		.item-delete {
+			text-align: right;
+			position: absolute;
+			right: 50px;
+			top: 30px;
+			display: none;
+		}
+		.btn-delete {
+			padding: 8px;
+			background-color: #89F9C6;
+			color: #363535!important;
+			border-radius: 3px;
+		}
+		.btn-delete:hover {
+			background-color: #58F6BE;
+			color: #040404 !important;
+		}
+		.common-middle .title {
+			color: #D8D3D3!important;
+		}
+	</style>
+	<script>
+		$(function(){
+			var $item = $('.article-item');
+			$item.hover(function(){
+				$(this).find('.item-delete').show(100);
+			}, function(){
+				$(this).find('.item-delete').hide();
+			});
+		});
+	</script>
 </head>
 
 <body>
@@ -56,7 +96,7 @@
 			<img src="images/header-right.gif" alt="" />
 			<div class="operations">
 				<c:choose>
-					<c:when test="${sessionScope.login != null && (sessionScope.login).equals('login')}">
+					<c:when test="${sessionScope.login != null && sessionScope.loginer == null && (sessionScope.login).equals('login')}">
 						<c:url var="show" value="show.jsp">
 							<c:param name="id" value="${sessionScope.id}"></c:param>
 						</c:url>
@@ -66,13 +106,13 @@
 						<a href="exit.jsp" class="btn">退出</a>
 					</c:when>
 					<c:otherwise>
-
-						<a href="javascript:void(0);" id="btn-login" class="btn">登录</a>
-						<a href="regist.jsp" class="btn">注册</a>
 						<c:choose>
 							<c:when test="${sessionScope.loginer == null }">
+								<a href="javascript:void(0);" id="btn-login" class="btn">登录</a>
+								<a href="regist.jsp" class="btn">注册</a>
 							</c:when>
 							<c:otherwise>
+								<span>&nbsp;</span>
 								<a href="loginerExit.jsp" class="btn">退出</a>
 							</c:otherwise>
 						</c:choose>
@@ -131,7 +171,9 @@
 										<c:param name="rootid" value="${article.rootid}"></c:param>
 										<c:param name="operation" value="deleteArticle"></c:param>
 									</c:url>
-									<a href="${deleteArticle }" class="btn-delete">删除</a>
+									<div class="item-delete">
+										<a href="${deleteArticle }" class="btn-delete">删除</a>
+									</div>
 								</c:otherwise>
 							</c:choose>
 
@@ -174,7 +216,9 @@
 										<c:param name="rootid" value="${article.rootid}"></c:param>
 										<c:param name="operation" value="deleteArticle"></c:param>
 									</c:url>
-									<a href="${deleteArticle }">删除</a>
+									<div class="item-delete">
+										<a href="${deleteArticle }" class="btn-delete">删除</a>
+									</div>
 								</c:otherwise>
 							</c:choose>
 							<div class="jive-thread-name">

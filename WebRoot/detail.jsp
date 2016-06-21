@@ -37,12 +37,12 @@
 		<div class="common-middle">
 			<h2 class="title">Java开发者的交流天堂</h2>
 		</div>
-		<div class="common-right">
-			<img src="images/header-right.gif" alt="" />
-			<div class="operations">
-				<a href="exit.jsp" class="btn">退出</a>
-			</div>
-		</div>
+<!-- 		<div class="common-right"> -->
+<!-- 			<img src="images/header-right.gif" alt="" /> -->
+<!-- 			<div class="operations"> -->
+<!-- 				<a href="exit.jsp" class="btn">退出</a> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
 	</header><!-- /header -->
 	<!-- 帖子回复 -->
 	<ul id="jive-message-holder">

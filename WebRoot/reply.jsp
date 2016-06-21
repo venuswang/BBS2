@@ -41,36 +41,35 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <meta http-equiv="expires" content="0">
 <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 <meta http-equiv="description" content="This is my page">
-<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
+<link rel="stylesheet" href="css/basic.min.css" />
+<link rel="stylesheet" href="css/reply.css" />
 <script type="text/javascript" src="ckeditor/ckeditor.js"></script>
 </head>
 
 <body>
-	<form action="servlet" method="post">
-		<table border="1">
-			<tr>
-				<td>标题：<input type="text" name="title" required="required"></input>
-				</td>
-			</tr>
-			<tr>
-				<td>内容：<textarea name="cont" rows="15" cols="60" required></textarea>
-					<!-- add in tag "body",and below the tag "textarea" "cont" replace the name of  textarea-->
-					<script type="text/javascript">CKEDITOR.replace("cont");</script>
-				</td>
-			</tr>
-			<tr>
-				<td><input type="submit" value="提交" /> &nbsp; <input
-					type="reset" value="重置" /></td>
-			</tr>
-			<input type="hidden" name="operation" value="replyArticle" />
-			<input type="hidden" name="authorid" value="${param.authorid}" />
-			<input type="hidden" name="pid" value="${param.pid}" />
-			<input type="hidden" name="rootid" value="${param.rootid}" />
-			<input type="hidden" name="replyName" value="${param.replyName}" />
-			<input type="hidden" name="floor" value="${param.floor}" />
-		</table>
-	</form>
+	<div id="container-reply-form">
+		<form action="servlet" method="post" id="reply-form">
+			<div class="post-title">
+				<label for="post-title">标题</label>
+				<input type="text" name="title" required="required" id="post-title" />
+			</div>
+			<div class="post-content">
+				<label for="post-content" class="content-lable">内容</label>
+				<textarea name="cont" required="required" id="post-content"></textarea>
+				<script type="text/javascript">CKEDITOR.replace("cont");</script>
+			</div>
+			<div class="operation">
+				<input type="submit" value="发表" id="post-submit" />
+			</div>
+			<div class="operation-hidden">
+				<input type="hidden" name="operation" value="replyArticle" />
+				<input type="hidden" name="authorid" value="${param.authorid}" />
+				<input type="hidden" name="pid" value="${param.pid}" />
+				<input type="hidden" name="rootid" value="${param.rootid}" />
+				<input type="hidden" name="replyName" value="${param.replyName}" />
+				<input type="hidden" name="floor" value="${param.floor}" />
+			</div>
+		</form>
+	</div>
 </body>
 </html>

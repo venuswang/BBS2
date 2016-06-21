@@ -87,18 +87,20 @@ public class RegisterEventImp implements RegisterEvent {
 	public Author show(int id) throws SQLException {
 		Author author = null;
 		try {
-			String sql = "select * from author where id = ?";
+			String sql = "select author.*,name from author,voucher where id = voucherid and id = ?";
 			con = JdbcUtil.getConnection();
 			ps = con.prepareStatement(sql);
 			ps.setInt(1,id);
 			rs = ps.executeQuery();
 			if(rs.next()) {
 				author = new Author();
+				author.setName(rs.getString("name"));
 				author.setSex(rs.getString("sex"));
 				author.setSlikes(rs.getString("slikes"));
 				author.setMlikes(rs.getString("mlikes"));
 				author.setIntroduce(rs.getString("introduce"));
 			}
+			
 		} finally {
 			ConnectionnResourseFree.free(con, ps, rs);
 		}

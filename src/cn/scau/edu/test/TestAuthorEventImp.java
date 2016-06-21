@@ -1,4 +1,4 @@
-package cn.scau.edu.test;
+/*package cn.scau.edu.test;
 
 import static org.junit.Assert.fail;
 
@@ -35,3 +35,4 @@ public class TestAuthorEventImp {
 	}
 
 }
+*/

@@ -47,6 +47,7 @@ public class Serv extends HttpServlet {
 		String operation = request.getParameter("operation");
 		System.out.println(operation);
 		if("regist".equals(operation)) {  //如果是注册操作
+			System.out.println("regist");
 			String username = request.getParameter("username");
 			String password = request.getParameter("pwd");
 			//start

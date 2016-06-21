@@ -1,0 +1,13 @@
+.register-content {
+	width: 750px;
+	margin: 20px auto;
+	border: 1px solid blue;
+	text-align: center;
+	line-height: 30px;
+}
+.register-title {
+	text-align: right;
+}
+.register-item {
+	text-align: left;
+}

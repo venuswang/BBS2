@@ -1,0 +1,134 @@
+body {
+	background-color: #fff;
+}
+.header {
+	height: 57px;
+	background: url('../images/header-stretch.gif') repeat-x left top;
+	position: relative;
+	text-align: center;
+	line-height: 57px;
+}
+.header .common-left {
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+.header .common-middle .title {
+	font-size: 30px;
+	color: #7BF7FB;
+	letter-spacing: .5em;
+	text-shadow: 0px 0px 0px #7BF7FB,
+				 1px 0px 0px #7BF7FB,
+				 2px 0px 0px #7BF7FB,
+				 3px 0px 0px #7BF7FB,
+				 4px 0px 0px #7BF7FB,
+				 5px 0px 0px #7BF7FB;
+}
+.header .common-right {
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+.header .common-right .operations {
+	position: absolute;
+	right: 30px;
+	top: 0;
+}
+.header .common-right .operations .btn {
+	background-color: rgba(181, 241, 240, .95);
+	color: #FAF8F8;
+	padding: 10px 20px;
+	border-radius: 5px;
+	margin-left: 20px;
+	vertical-align: middle;
+}
+.header .common-right .operations .btn:hover {
+	background-color: rgba(55, 180, 232, 0.8);
+	color: #FFFFFF;
+}
+/* 帖子回复 */ 
+.list-item {
+	border-bottom: 1px solid #dedede;
+	border-top: 1px solid #dedede;
+	padding: 0 10px;
+	position: relative;
+	margin: 20px 0;
+}
+.list-item .item-user-info {
+	position: absolute;
+	left: 10px;
+	top: 0;
+	width: 130px;
+	text-align: left;
+}
+.item-user-info .user-info-fund {
+	margin-bottom: 10px;
+}
+.item-user-info .user-info-fund .user-info-level {
+	margin-left: 10px;
+}
+.item-user-info .user-info-image {
+	margin-bottom: 10px;
+}
+.item-user-info .user-info-image .info-image {
+	border-radius: 5px;
+	padding-left: 3px;
+}
+.item-user-info .user-info-pub {
+	margin-bottom: 10px;
+}
+.item-user-info .user-info-star {
+	margin-bottom: 10px;
+}
+.item-user-info .user-info-register {
+	margin-bottom: 10px;
+}
+.item-user-info .user-info-blog {
+	margin-bottom: 10px;
+}
+.list-item .item-content {
+	min-height: 200px;
+	margin-left: 140px;
+	border-left: 1px solid #dedede;
+	padding: 20px 10px;
+	position: relative;
+}
+.item-content .item-content-subject {
+	margin-bottom: 10px;
+}
+.item-content .item-content-reply {
+	position: absolute;
+	right: 20px;
+	top: 20px;
+}
+.item-content .item-content-reply .btn {
+	background: url('../images/reply-16x16.gif') no-repeat 3px center;
+	padding-left: 23px;
+}
+.item-content .item-content-detail {
+	margin-bottom: 10px;
+}
+.item-content .item-content-detail .detail-content {
+	font-size: 14px;
+	line-height: 1.5;
+}
+.item-content .item-content-footer {
+	margin-bottom: 10px;
+}
+.item-content .item-content-friend {
+	margin-bottom: 10px;
+}
+/* 尾部 */
+.jive-message-list-footer {
+	text-align: right;
+	letter-spacing: .1em;
+	padding-right: 30px;
+}
+.jive-message-list-footer .btn-back {
+	background: url('../images/arrow-left-16x16.gif') no-repeat 3px center;
+	padding-left: 20px;
+	vertical-align: middle;
+	font-size: 16px;
+}
+
+

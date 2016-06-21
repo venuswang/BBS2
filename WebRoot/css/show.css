@@ -1,0 +1,145 @@
+body {
+	background-color: #fff;
+}
+#header {
+  position: relative;
+  line-height: 100px;
+  height: 100px;
+}
+#header .common-left {
+  position: absolute;
+  left: 50px;
+  top: 50%;
+  margin-top: -28px;
+}
+#header .common-left .bbs-log {
+  vertical-align: top;
+  max-width: 100%;
+  border-radius: 50% 5px 80% 10px;
+}
+#header .common-right {
+  position: absolute;
+  right: 50px;
+  top: 0;
+}
+#header .common-right .info {
+  line-height: 1.5;
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+  vertical-align: -1.5em;
+  margin-right: 15px;
+}
+#header .common-right .btn-register {
+  line-height: 1.5;
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+  vertical-align: -1.45em;
+  color: #E0E9EA;
+  letter-spacing: .2em;
+  background-color: #21A9A2;
+  padding: 5px 10px;
+  border-radius: 3px;
+}
+#header .common-right .btn-register:hover {
+  color: #F6F6F6;
+  background-color: #1DC5AE;
+}
+.user-info {
+	width: 600px;
+	text-align: center;
+	margin: 15px auto;
+	border-spacing: 0px;
+}
+.user-title {
+	color: #F6F1F1;
+	font-size: 36px;
+	font-weight: 600;
+	margin-bottom: 30px;
+	letter-spacing: .5em;
+	text-shadow: 0px 0px 0px #F6F1F1,
+				 1px 0px 0px #F6F1F1,
+				 2px 0px 0px #F6F1F1,
+				 3px 0px 0px #F6F1F1,
+				 4px 0px 0px #F6F1F1,
+				 5px 0px 0px #F6F1F1;
+}
+.user-item {
+	height: 50px;
+	line-height: 50px;
+	cursor: pointer;
+}
+.user-lable {
+	font-weight: bold;
+	text-align: left;
+	padding-left: 20px;
+	font-size: 20px;
+	letter-spacing: .4em;
+}
+tr:first-child td:first-child {
+	border-color: transparent;
+	border-style: solid;
+	border-width: 1px 0px 0px 1px;
+	border-radius: 4px 0px 0px 0px;
+}
+tr:first-child td:last-child {
+	border-color: transparent;
+	border-style: solid;
+	border-width: 1px 1px 0px 0px;
+	border-radius: 0px 4px 0px 0px;
+}
+tr:last-child td:first-child {
+	border-color: transparent;
+	border-width: 0px 0px 1px 1px;
+	border-style: solid;
+	border-radius: 0px 0px 0px 4px;
+}
+tr:last-child td:last-child {
+	border-color: transparent;
+	border-width: 0px 1px 1px 0px;
+	border-style: solid;
+	border-radius: 0px 0px 4px 0px;
+}
+.odd {
+	color: #A28888;
+	background-color: #eee;
+}
+.odd .user-lable {
+	color: #A28888;
+	text-shadow: 0px 0px 0px #ABA8A8,
+				 1px 0px 0px #ABA8A8,
+				 2px 0px 0px #ABA8A8,
+				 3px 0px 0px #ABA8A8,
+				 4px 0px 0px #ABA8A8,
+				 5px 0px 0px #ABA8A8;
+}
+.even {
+	color: #542C2C;
+	background-color: #aaa;
+}
+.even .user-lable {
+	color: #542C2C;
+	text-shadow: 0px 0px 0px #6B4646,
+				 1px 0px 0px #6B4646,
+				 2px 0px 0px #6B4646,
+				 3px 0px 0px #6B4646,
+				 4px 0px 0px #6B4646,
+				 5px 0px 0px #6B4646;
+}
+tr:hover {
+	background-color: #333;
+	color: #fff;
+}
+tr:hover .user-lable{
+	background-color: #333;
+	color: #fff;
+	font-size: 20px;
+	letter-spacing: .4em;
+	text-shadow: 0px 0px 0px #F1EBEB,
+				 1px 0px 0px #F1EBEB,
+				 2px 0px 0px #F1EBEB,
+				 3px 0px 0px #F1EBEB,
+				 4px 0px 0px #F1EBEB,
+				 5px 0px 0px #F1EBEB;
+}

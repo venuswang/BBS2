@@ -1,0 +1,83 @@
+body{
+	background-color: #fff;
+}
+#container {
+	margin: auto;
+	text-align: left;
+	position: absolute;
+	left: 50px;
+	right: 50px;
+	top: 50px;
+	bottom: 50px;
+	line-height: 1.5;
+	padding: 10px;
+	border-radius: 10px;
+	box-shadow: 0 0 0 #EDE9E9,
+				0 0 1px #EDE9E9,
+				0 0 2px #EDE9E9,
+				0 0 3px #EDE9E9,
+				0 0 4px #EDE9E9,
+				0 0 5px #EDE9E9,
+				0 0 6px #EDE9E9,
+				0 0 7px #EDE9E9;
+}
+#container input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
+#container input::-ms-clear, #container input::-ms-reveal {
+  display: none;
+}
+#container .post-title {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+#container #post-title{
+  font-size: 16px;
+  margin-left: 1em;
+  width: 90%;
+  padding-left: .2em;
+  padding-top: .2em;
+  padding-bottom: .2em;
+  padding-right: .2em;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #7BE5E2 #7BE5E2 #44ACC8 #44ACC8;
+  border-radius: .3em;
+}
+#container #post-title:focus {
+  border-color: #44ACC8 #44ACC8 #7BE5E2 #7BE5E2;
+}
+#container .post-content {
+	font-size: 16px;
+	margin: 15px 0;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+#container .content-lable {
+	line-height: 30px;
+}
+#container #post-content {
+	font-size: 16px;
+}
+#container .operation {
+	margin-top: 30px;
+	position: relative;
+}
+#container .operation #post-submit {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	padding: 0 10px;
+	height: 30px;
+	width: 100%;
+	border-radius: 5px;
+	cursor: pointer;
+	background-color: #4BA8DF;
+	color: #F9F7F7;
+}
+#container .operation #post-submit:hover {
+	background-color: #248FCE;
+	color: #FFFEFE;
+}

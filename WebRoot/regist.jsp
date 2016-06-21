@@ -8,131 +8,100 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<title>表单</title>
-<script language="JavaScript" src="images/regcheckdata.js"></script>
-<meta http-equiv="content-type" content="text/html;charset=utf-8">
-<script type="text/javascript">
-		/*function check() {
-			var s = form.username.value.trim();
-			if(s != null && s != "") {
-				return true;
-			}
-			alert("用户名不能为空或空格");
-			form.username.focus;
-			return false;
-		}
-		*/
-		
-		var xmlhttp;
-		function load(url,func) {
-			if(window.XMLHttpRequest) {
-				xmlhttp = new XMLHttpRequest;
-			} else {
-				xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-			}
-			xmlhttp.onreadystatechange = func;
-			xmlhttp.open("post", url, true);
-			xmlhttp.send();
-		}
-		function checkUser(user) {
-			load("CheckUserLogging?username="+user,function() {
-				if(xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-					var msg = xmlhttp.responseText;
-					var obj = document.getElementById("message");
-					var btn = document.getElementById("regbutton");
-					/*alert(msg);*/
-					if(msg === "1") {
-						/*alert("xi");*/
-						obj.setAttribute("style", "color: green;");
-						obj.innerHTML = "可用的用户名";
-						btn.removeAttribute("disabled");
-					} else if(msg === "2") {
-						obj.setAttribute("style","color:red");
-						obj.innerHTML = "用户名已经存在";
-						btn.setAttribute("disabled", "");
-					} else if(msg === "0") {
-						obj.setAttribute("style","color:yellow");
-						obj.innerHTML = "用户名不能为空或空格";
-						btn.setAttribute("disabled", "");
-					} else if(msg === "3") {
-						obj.setAttribute("style","color:yellow");
-						obj.innerHTML = "用户名不能有非法字符";
-						btn.setAttribute("disabled", "");
-					} else if(msg === "4") {
-						obj.setAttribute("style","color:yellow");
-						obj.innerHTML = "用户名不能超过30个字符,不能少于6个字符";
-						btn.setAttribute("disabled", "");
-					}
-				}
-			});
-		}
-	</script>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>个人注册</title>
+	<link rel="stylesheet" href="css/basic.min.css" />
+	<link rel="stylesheet" href="css/register.min.css" />
+	<link rel="stylesheet" href="css/sumoselect.min.css" />
+	<link rel="stylesheet" href="css/form.min.css" />
+	<script src="js/jquery-1.12.3.min.js"></script>
+	<script src="js/jquery.sumoselect.min.js"></script>
+	<script src="js/jquery.validate.min.js"></script>
+	<script src="js/register.min.js"></script>
+	<script src="js/form.min.js"></script>
 </head>
+
 <body>
 	<center>
 		<c:out value="${requestScope.warnning}"></c:out>
 	</center>
-	<form name="form" action="servlet" method="post"
-		onSubmit="return checkdata()">
-		<table width="750" align="center" border="2">
-			<tr>
-				<td colspan="2" align="center">用户注册</td>
-			</tr>
-			<tr>
-				<td>用户名：</td>
-				<td><input type=text name="username"
-					onblur="checkUser(this.value)" size="30" maxlength="30">
-					<div id="message" style=""></div></td>
-			</tr>
-			<tr>
-				<td>密码：</td>
-				<td><input type=password name="pwd" size="15" maxlength="12">
-				</td>
-			</tr>
-			<tr>
-				<td>密码确认</td>
-				<td><input type=password name="pwd2" size="15" maxlength="12">
-				</td>
-			</tr>
-
-			<tr>
-				<td>性别</td>
-				<td><input type=radio name="sex" value="male">男 <input
-					type=radio name="sex" value="female">女</td>
-			</tr>
-
-			<tr>
-				<td>你感兴趣</td>
-				<td><input type="checkbox" name="slikes" value="vc" checked>VC
-					<input type="checkbox" name="slikes" value="vb">VB <input
-					type="checkbox" name="slikes" value="c#">C# <input
-					type="checkbox" name="slikes" value="java">Java <br> <input
-					type="checkbox" name="slikes" value="python">Python <input
-					type="checkbox" name="slikes" value="js">Javascript <input
-					type="checkbox" name="slikes" value="c++">C++ <input
-					type="checkbox" name="slikes" value="delphi">Delphi</td>
-			</tr>
-
-			<!--必须选中JSP-->
-			<!--  <input type="hidden" name="interest" value="jsp">-->
-
-			<tr>
-				<td>你感兴趣</td>
-				<td><select name="mlikes" size=8 multiple>
+	<div class="container">
+		<div id="header">
+			<div class="common-left">
+				<img src="images/header-left.gif" alt="bbs logo" class="bbs-log" />
+			</div>
+			<div class="common-middle">
+				<h1 class="title">欢<span class="appearence1">迎</span>注<span class="appearence2">册</span></h1>
+			</div>
+			<div class="common-right">
+				<span class="info">已有账号</span>
+				<a href="javascript:void(0)" class="btn-login" id="btn-login">登录</a>
+			</div>
+		</div>
+		<div id="main">
+			<form name="form" action="servlet" method="post" class="register-form" id="register-form">
+				<!-- username -->
+				<div class="register-item">
+					<label for="register-username" class="register-label label-three">用户名</label>
+					<input type="text" name="username" placeholder="您的账号名和登录名" id="register-username" class="register-content-text" />
+				</div>
+				<!-- password -->
+				<div class="register-item">
+					<label for="register-password" class="register-label">设置密码</label>
+					<input type="password" name="pwd" placeholder="您登录时的密码" id="register-password" class="register-content-text" />
+				</div>
+				<!-- check password -->
+				<div class="register-item">
+					<label for="register-checkpwd" class="register-label">确认密码</label>
+					<input type="password" name="pwd2" placeholder="请再次输入密码" id="register-checkpwd" class="register-content-text" />
+				</div>
+				<!-- sex -->
+				<div class="register-item">
+					<label class="register-label label-three">性&nbsp;别</label>
+					<input type="radio" name="sex" value="male" id="register-sex-man" />
+					<label for="register-sex-man">男</label>
+					<input type="radio" name="sex" value="female" id="register-sex-women" class="register-content-radio" />
+					<label for="register-sex-women">女</label>
+				</div>
+				<!-- 编程爱好 -->
+				<div class="register-item register-item-checkbox">
+					<label class="register-label">编程爱好</label>
+					<input type="checkbox" name="slikes" value="vc" checked="checked" id="code-item-vc" class="register-content-checkbox" />
+					<label for="code-item-vc">VC</label>
+					<input type="checkbox" name="slikes" value="vb" id="code-item-vb" class="register-content-checkbox" />
+					<label for="code-item-vb">VB</label>
+					<input type="checkbox" name="slikes" value="c#" id="code-item-c#" class="register-content-checkbox" />
+					<label for="code-item-c#">C#</label>
+					<input type="checkbox" name="slikes" value="java" id="code-item-java" class="register-content-checkbox" />
+					<label for="code-item-java">Java</label>
+					<input type="checkbox" name="slikes" value="python" id="code-item-py" class="register-content-checkbox" />
+					<label for="code-item-py">Python</label>
+					<input type="checkbox" name="slikes" value="js" id="code-item-js" class="register-content-checkbox" />
+					<label for="code-item-js">Javascript</label>
+					<input type="checkbox" name="slikes" value="c++" id="code-item-c++" class="register-content-checkbox" />
+					<label for="code-item-c++">C++</label>
+					<input type="checkbox" name="slikes" value="delphi" id="code-item-delphi" class="register-content-checkbox" />
+					<label for="code-item-delphi">Delphi</label>
+				</div>
+				<!-- 生活爱好 -->
+				<div class="register-item register-item-select">
+					<label for="register-life-love" class="register-label register-label-select">生活爱好</label>
+					<select name="mlikes" multiple="multiple" id="register-life-love"  class="SlectBox">
 						<option value="篮球">篮球</option>
 						<option value="足球">足球</option>
 						<option value="游戏">游戏</option>
 						<option value="动漫">动漫</option>
 						<option value="看书">看书</option>
 						<option value="连续剧">连续剧</option>
-						<option value="编程" selected>编程</option>
+						<option value="编程" selected="selected">编程</option>
 						<option value="电影">电影</option>
-				</select></td>
-			</tr>
-
-			<tr>
-				<td>你来自</td>
-				<td><select name="province">
+					</select>
+				</div>
+				<!-- 居住地 -->
+				<div class="register-item  register-item-select">
+					<label for="register-address" class="register-label label-three">居住地</label>
+					<select name="province" id="register-address"  class="SlectBox">
 						<option value=0 selected>请选择</option>
 						<option value=34>安徽</option>
 						<option value=11>北京</option>
@@ -169,22 +138,42 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<option value=81>香港</option>
 						<option value=82>澳门</option>
 						<option value=0>其他</option>
-				</select></td>
-			</tr>
-
-			<tr>
-				<td>自我介绍</td>
-				<td><textarea rows="12" cols="80" name="intro"></textarea></td>
-			</tr>
-
-			<tr>
-				<td></td>
-				<td><input type="submit" id="regbutton" value="提交"> <input
-					type="reset" value="重置"> <input type="hidden"
-					name="operation" value="regist"></td>
-			</tr>
-
-		</table>
-	</form>
+					</select>
+				</div>
+				<!-- 自我介绍 -->
+				<div class="register-item register-content-textarea">
+					<label class="register-label" class="register-label">自我介绍</label>
+					<textarea name="intro" class="intro-textarea" placeholder="简单的自我介绍...."></textarea>
+				</div>
+				<!-- 表单操作 -->
+				<div class="register-item register-content-opera">
+					<input type="submit" value="提交" class="form-opera" id="form-submit" />
+					<input type="reset" value="重置" class="form-opera" />
+					<input type="hidden" name="operation" value="regist" />
+				</div>
+			</form>
+		</div>
+	</div>
+	<div id="login-form-container">
+		<form action="servlet" id="login-form" method="post">
+			<fieldset class="form-fieldset">
+				<legend class="form-legend">用户登录</legend>
+				<p class="form-item">
+					<lable for="username" class="item-lable">用户名</lable>
+					<input type="text" id="username" name="username" class="item-scanf" />
+				</p>
+				<p class="form-item">
+					<lable for="password" class="item-lable">密码</lable>
+					<input type="password" id="password" name="password" class="item-scanf" />
+				</p>
+				<p class="form-item">
+					<a href="javascript:void(0)" id="submit">登录</a>
+				</p>
+				<p>
+					<input type="hidden" name="operation" value="loginCheck" />
+				</p>
+			</fieldset>
+		</form>
+	</div>
 </body>
 </html>

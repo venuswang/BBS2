@@ -1,0 +1,25 @@
+body{
+	background-color: #fff;
+}
+.container {
+	margin: auto;
+	text-align: left;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	width: 400px;
+	height: 200px;
+	margin-left: -200px;
+	margin-top: -100px;
+	line-height: 1.5;
+	padding: 10px;
+	border-radius: 10px;
+	box-shadow: 0 0 0 #EDE9E9,
+				0 0 1px #EDE9E9,
+				0 0 2px #EDE9E9,
+				0 0 3px #EDE9E9,
+				0 0 4px #EDE9E9,
+				0 0 5px #EDE9E9,
+				0 0 6px #EDE9E9,
+				0 0 7px #EDE9E9;
+}

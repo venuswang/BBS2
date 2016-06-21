@@ -23,191 +23,92 @@
 	src="images/global.js"></script>
 <link rel="alternate" type="application/rss+xml" title="RSS"
 	href="http://bbs.chinajavaworld.com/rss/rssmessages.jspa?threadID=744236">
+	<link rel="stylesheet" href="css/basic.min.css" />
+	<link rel="stylesheet" href="css/detail.css" />
+	<script src="js/jquery-1.12.3.min.js"></script>
 </head>
 <body>
-	<table border="0" cellpadding="0" cellspacing="0" width="100%">
-		<tbody>
-			<tr>
-				<td width="140"><a href="http://www.scau.edu.cn"><img
-						src="images/header-left.gif"
-						alt="Java|Java世界_中文论坛|ChinaJavaWorld技术论坛" border="0"></a></td>
-				<td><img src="images/header-stretch.gif" alt="" border="0"
-					height="57" width="100%"></td>
-				<td width="1%"><img src="images/header-right.gif" alt=""
-					border="0"></td>
-			</tr>
-		</tbody>
-	</table>
-	<%--  
-<br>
-<div id="jive-flatpage">
-  <table border="0" cellpadding="0" cellspacing="0" width="100%">
-    <tbody>
-      <tr valign="top">
-        <td width="99%"><p class="jive-breadcrumbs"> <a href="http://bbs.chinajavaworld.com/index.jspa">首页</a> &#187; <a href="http://bbs.chinajavaworld.com/forumindex.jspa?categoryID=1">ChinaJavaWorld技术论坛|Java世界_中文论坛</a> &#187; <a href="http://bbs.chinajavaworld.com/category.jspa?categoryID=2">Java 2 Platform, Standard Edition (J2SE)</a> &#187; <a href="http://bbs.chinajavaworld.com/forum.jspa?forumID=20&amp;start=0">Java语言*初级版</a> </p>
-          <p class="jive-page-title"> 主题: <%= (request.getAttribute("articles")).get(0).getTitle() %> </p></td>
-        <td width="1%"><div class="jive-accountbox"></div></td>
-      </tr>
-    </tbody>
-  </table>
-  <div class="jive-buttons">
-    <table summary="Buttons" border="0" cellpadding="0" cellspacing="0">
-      <tbody>
-        <tr>
-          <td class="jive-icon"><a href="http://bbs.chinajavaworld.com/post%21reply.jspa?threadID=744236"><img src="images/reply-16x16.gif" alt="回复本主题" border="0" height="16" width="16"></a></td>
-          <td class="jive-icon-label"><a id="jive-reply-thread" href="reply.jsp?pid=<%=articles.get(0).getId()%>&rootid=<%=articles.get(0).getRootid() %>">回复本主题</a> </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  --%>
-	<br>
-	<table border="0" cellpadding="0" cellspacing="0" width="100%">
-		<tbody>
-			<tr valign="top">
-				<td width="99%"><div id="jive-message-holder">
-						<%--
-				String sign = "";
-				for(int i = 0; i < articles.size(); i++) {
-					if(i == 0) {
-						sign = "父贴";
-					} else {
-						sign = "第" + i + "楼";
-					}
-			--%>
-						<c:forEach var="article" items="${requestScope.articles }"
-							varStatus="num">
-							<c:choose>
-								<c:when test="${num.count == 1 }">
-									<c:set var="sign" value="父贴"></c:set>
-								</c:when>
-								<c:otherwise>
-									<c:set var="sign" value="第${num.count - 1}楼"></c:set>
-								</c:otherwise>
-							</c:choose>
-							<div class="jive-message-list">
-								<div class="jive-table">
-									<div class="jive-messagebox">
-										<table summary="Message" border="0" cellpadding="0"
-											cellspacing="0" width="100%">
-											<tbody>
-												<tr id="jive-message-780144" class="jive-odd" valign="top">
-													<td class="jive-first" width="1%">
-														<!-- 个人信息的table -->
-
-														<table border="0" cellpadding="0" cellspacing="0"
-															width="150">
-															<tbody>
-																<tr>
-																	<td><table border="0" cellpadding="0"
-																			cellspacing="0" width="100%">
-																			<tbody>
-																				<tr valign="top">
-																					<td style="padding: 0px;" width="1%"><nobr>
-																							<a href="show.jsp?id=${article.authorid}"
-																								title="${article.authorName}">${article.authorName}</a>
-																						</nobr></td>
-																					<td style="padding: 0px;" width="99%"><img
-																						class="jive-status-level-image"
-																						src="images/level3.gif" title="世界新手" alt=""
-																						border="0"><br></td>
-																				</tr>
-																			</tbody>
-																		</table> <img class="jive-avatar"
-																		src="images/avatar-display.png" alt="" border="0">
-																		<br> <br> <span class="jive-description">
-																			发表: 34 <br> 点数: 100<br> 注册: 07-5-10 <br>
-																			<a href="show.jsp?id=${article.authorid}"
-																			target="_blank"><font color="red">访问我的Blog</font></a>
-																	</span></td>
-																</tr>
-															</tbody>
-														</table> <!--个人信息table结束-->
-
-													</td>
-													<td class="jive-last" width="99%"><table border="0"
-															cellpadding="0" cellspacing="0" width="100%">
-															<tbody>
-																<tr valign="top">
-																	<td width="1%"></td>
-																	<td width="97%"><span class="jive-subject">
-																			${sign} + "-------" + ${article.title }</span></td>
-																	<td class="jive-rating-buttons" nowrap="nowrap"
-																		width="1%"></td>
-																	<td width="1%"><div class="jive-buttons">
-																			<table border="0" cellpadding="0" cellspacing="0">
-																				<tbody>
-																					<tr>
-																						<td>&nbsp;</td>
-																						<td class="jive-icon"><a
-																							href="reply.jsp?pid=${article.id}&rootid=${article.rootid}&replyName=${article.authorName}&floor=${sign}&authorid=${sessionScope.id}"
-																							title="回复本主题"><img
-																								src="images/reply-16x16.gif" alt="回复本主题"
-																								border="0" height="16" width="16"></a></td>
-																						<td class="jive-icon-label"><a
-																							href="reply.jsp?pid=${article.id}&rootid=${article.rootid}&replyName=${article.authorName}&floor=${sign}&authorid=${sessionScope.id}"
-																							title="回复本主题">回复</a></td>
-																					</tr>
-																				</tbody>
-																			</table>
-																		</div></td>
-																</tr>
-																<tr>
-																	<td colspan="4"
-																		style="border-top: 1px solid rgb(204, 204, 204);"><br>
-																		${article.cont} <br> <br></td>
-																</tr>
-																<tr>
-																	<td colspan="4" style="font-size: 9pt;"><img
-																		src="images/sigline.gif"><br> <font
-																		color="#568ac2">学程序是枯燥的事情，愿大家在一起能从中得到快乐！</font> <br>
-																	</td>
-																</tr>
-																<tr>
-																	<td colspan="4"
-																		style="border-top: 1px solid rgb(204, 204, 204); font-size: 9pt; table-layout: fixed;">
-																		·<a href="http://www.scau.edu.cn"><font
-																			color="#666666">http://www.scau.edu.cn</font></a>
-																	</td>
-																</tr>
-															</tbody>
-														</table></td>
-												</tr>
-											</tbody>
-										</table>
-									</div>
-								</div>
-							</div>
-						</c:forEach>
-						<%--
-							}
-						--%>
-						<div class="jive-message-list-footer">
-							<table border="0" cellpadding="0" cellspacing="0" width="100%">
-								<tbody>
-									<tr>
-										<td nowrap="nowrap" width="1%"></td>
-										<td align="center" width="98%"><table border="0"
-												cellpadding="0" cellspacing="0">
-												<tbody>
-													<tr>
-														<td><a href="article.jsp"><img
-																src="images/arrow-left-16x16.gif" alt="返回到主题列表"
-																border="0" height="16" hspace="6" width="16"></a></td>
-														<td><a href="article.jsp">返回到主题列表</a></td>
-													</tr>
-												</tbody>
-											</table></td>
-										<td nowrap="nowrap" width="1%">&nbsp;</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div></td>
-				<td width="1%"></td>
-			</tr>
-		</tbody>
-	</table>
-	</div>
+	<header class="header">
+		<div class="common-left">
+			<a href="http://www.scau.edu.cn" class="btn-logo">
+				<img src="images/header-left.gif" alt="华南农业大学" />
+			</a>
+		</div>
+		<div class="common-middle">
+			<h2 class="title">Java开发者的交流天堂</h2>
+		</div>
+		<div class="common-right">
+			<img src="images/header-right.gif" alt="" />
+			<div class="operations">
+				<a href="exit.jsp" class="btn">退出</a>
+			</div>
+		</div>
+	</header><!-- /header -->
+	<!-- 帖子回复 -->
+	<ul id="jive-message-holder">
+		<c:forEach var="article" items="${requestScope.articles }" varStatus="num">
+			<c:choose>
+				<c:when test="${num.count == 1 }">
+					<c:set var="sign" value="父贴"></c:set>
+				</c:when>
+				<c:otherwise>
+					<c:set var="sign" value="第${num.count - 1}楼"></c:set>
+				</c:otherwise>
+			</c:choose>
+			<li class="list-item">
+				<!-- 个人信息 -->
+				<div class="item-user-info">
+					<div class="user-info-fund">
+						<a href="show.jsp?id=${article.authorid}" title="${article.authorName}" class="user-info-name">
+							${article.authorName}
+						</a>
+						<img class="user-info-level" src="images/level3.gif" title="世界新手" alt="" />
+					</div>
+					<div class="user-info-image">
+						<img class="info-image" src="images/avatar-display.png" alt="" />
+					</div>
+					<div class="user-info-pub">
+						<span>发表：</span>
+						<span class="pub-num">34</span>
+					</div>
+					<div class="user-info-star">
+						<span>点数：</span>
+						<span class="star-num">100</span>
+					</div>
+					<div class="user-info-register">
+						<span>注册：</span>
+						<span class="register-time">07-5-10</span>
+					</div>
+					<div class="user-info-blog">
+						<a href="show.jsp?id=${article.authorid}" target="_blank">访问我的Blog</a>
+					</div>
+				</div>
+				<!-- 帖子内容 -->
+				<div class="item-content">
+					<div class="item-content-subject">
+						<span class="jive-subject">${sign} @ ${article.title }</span>
+					</div>
+					<div class="item-content-reply">
+						<a href="reply.jsp?pid=${article.id}&rootid=${article.rootid}&replyName=${article.authorName}&floor=${sign}&authorid=${sessionScope.id}" title="回复本主题" class="btn">
+						回复
+						</a>
+					</div>
+					<div class="item-content-detail">
+						<p class="detail-content">${article.cont}</p>
+					</div>
+					<div class="item-content-footer">
+						<img src="images/sigline.gif" />
+						<p>学程序是枯燥的事情，愿大家在一起能从中得到快乐！</p>
+					</div>
+					<div class="item-content-friend">
+						<a href="http://www.scau.edu.cn" class="btn-friend">http://www.scau.edu.cn</a>
+					</div>
+				</div>
+			</li>
+		</c:forEach>
+		<div class="jive-message-list-footer">
+			<a href="article.jsp" class="btn-back">返回到主题列表</a>
+		</div>
+	</ul>
 </body>
 </html>

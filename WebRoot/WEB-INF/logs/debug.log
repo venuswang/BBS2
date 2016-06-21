@@ -1,0 +1,499 @@
+[DEBUG] 2016-06-16 11:29:24,195 method:cn.scau.edu.servlet.ConnectionPoolListerner.contextInitialized(ConnectionPoolListerner.java:26)
+我(监听器)被启动了
+
+[DEBUG] 2016-06-16 11:34:10,852 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:135)
+开始检验连接的有效性
+
+[DEBUG] 2016-06-16 11:34:11,807 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:154)
+com.mysql.jdbc.JDBC4Connection@400cd839
+
+[DEBUG] 2016-06-16 11:34:12,099 method:cn.scau.edu.util.MyProxyHandle.invoke(MyProxyHandle.java:48)
+com.mysql.jdbc.JDBC4Connection@400cd839close
+
+
+[DEBUG] 2016-06-16 11:34:12,471 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:135)
+开始检验连接的有效性
+
+[DEBUG] 2016-06-16 11:34:12,476 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:154)
+com.mysql.jdbc.JDBC4Connection@22c4d67f
+
+[DEBUG] 2016-06-16 11:34:12,618 method:cn.scau.edu.util.MyProxyHandle.invoke(MyProxyHandle.java:48)
+com.mysql.jdbc.JDBC4Connection@22c4d67fclose
+
+
+[DEBUG] 2016-06-16 11:36:15,333 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:135)
+开始检验连接的有效性
+
+[DEBUG] 2016-06-16 11:36:15,336 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:154)
+com.mysql.jdbc.JDBC4Connection@60dba93c
+
+[DEBUG] 2016-06-16 11:36:15,338 method:cn.scau.edu.util.MyProxyHandle.invoke(MyProxyHandle.java:48)
+com.mysql.jdbc.JDBC4Connection@60dba93cclose
+
+
+[DEBUG] 2016-06-16 11:36:15,339 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:135)
+开始检验连接的有效性
+
+[DEBUG] 2016-06-16 11:36:15,342 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:154)
+com.mysql.jdbc.JDBC4Connection@37acf5c3
+
+[DEBUG] 2016-06-16 11:36:15,359 method:cn.scau.edu.util.MyProxyHandle.invoke(MyProxyHandle.java:48)
+com.mysql.jdbc.JDBC4Connection@37acf5c3close
+
+
+[DEBUG] 2016-06-16 11:36:16,566 method:cn.scau.edu.servlet.ConnectionPoolListerner.contextDestroyed(ConnectionPoolListerner.java:21)
+我(监听器)被销毁了...
+
+[DEBUG] 2016-06-16 11:36:51,639 method:cn.scau.edu.servlet.ConnectionPoolListerner.contextInitialized(ConnectionPoolListerner.java:26)
+我(监听器)被启动了
+
+[DEBUG] 2016-06-16 11:38:01,724 method:cn.scau.edu.servlet.ConnectionPoolListerner.contextDestroyed(ConnectionPoolListerner.java:21)
+我(监听器)被销毁了...
+
+[DEBUG] 2016-06-16 11:38:02,498 method:cn.scau.edu.servlet.ConnectionPoolListerner.contextInitialized(ConnectionPoolListerner.java:26)
+我(监听器)被启动了
+
+[DEBUG] 2016-06-16 11:40:24,348 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:135)
+开始检验连接的有效性
+
+[DEBUG] 2016-06-16 11:40:24,383 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:154)
+com.mysql.jdbc.JDBC4Connection@598da7e2
+
+[DEBUG] 2016-06-16 11:40:24,412 method:cn.scau.edu.util.MyProxyHandle.invoke(MyProxyHandle.java:48)
+com.mysql.jdbc.JDBC4Connection@598da7e2close
+
+
+[DEBUG] 2016-06-16 11:40:24,415 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:135)
+开始检验连接的有效性
+
+[DEBUG] 2016-06-16 11:40:24,419 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:154)
+com.mysql.jdbc.JDBC4Connection@7c173290
+
+[DEBUG] 2016-06-16 11:40:24,437 method:cn.scau.edu.util.MyProxyHandle.invoke(MyProxyHandle.java:48)
+com.mysql.jdbc.JDBC4Connection@7c173290close
+
+
+[DEBUG] 2016-06-16 11:40:44,926 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:135)
+开始检验连接的有效性
+
+[DEBUG] 2016-06-16 11:40:44,929 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:154)
+com.mysql.jdbc.JDBC4Connection@e54107
+
+[DEBUG] 2016-06-16 11:40:44,931 method:cn.scau.edu.util.MyProxyHandle.invoke(MyProxyHandle.java:48)
+com.mysql.jdbc.JDBC4Connection@e54107close
+
+
+[DEBUG] 2016-06-16 11:40:44,932 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:135)
+开始检验连接的有效性
+
+[DEBUG] 2016-06-16 11:40:44,933 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:154)
+com.mysql.jdbc.JDBC4Connection@25c82030
+
+[DEBUG] 2016-06-16 11:40:44,937 method:cn.scau.edu.util.MyProxyHandle.invoke(MyProxyHandle.java:48)
+com.mysql.jdbc.JDBC4Connection@25c82030close
+
+
+[DEBUG] 2016-06-16 11:40:47,358 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:135)
+开始检验连接的有效性
+
+[DEBUG] 2016-06-16 11:40:47,365 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:154)
+com.mysql.jdbc.JDBC4Connection@d9f71f8
+
+[DEBUG] 2016-06-16 11:40:47,367 method:cn.scau.edu.util.MyProxyHandle.invoke(MyProxyHandle.java:48)
+com.mysql.jdbc.JDBC4Connection@d9f71f8close
+
+
+[DEBUG] 2016-06-16 11:40:47,367 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:135)
+开始检验连接的有效性
+
+[DEBUG] 2016-06-16 11:40:47,369 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:154)
+com.mysql.jdbc.JDBC4Connection@2699d100
+
+[DEBUG] 2016-06-16 11:40:47,383 method:cn.scau.edu.util.MyProxyHandle.invoke(MyProxyHandle.java:48)
+com.mysql.jdbc.JDBC4Connection@2699d100close
+
+
+[DEBUG] 2016-06-16 11:41:33,049 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:135)
+开始检验连接的有效性
+
+[DEBUG] 2016-06-16 11:41:33,056 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:154)
+com.mysql.jdbc.JDBC4Connection@505a0b82
+
+[DEBUG] 2016-06-16 11:41:33,058 method:cn.scau.edu.util.MyProxyHandle.invoke(MyProxyHandle.java:48)
+com.mysql.jdbc.JDBC4Connection@505a0b82close
+
+
+[DEBUG] 2016-06-16 11:41:33,060 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:135)
+开始检验连接的有效性
+
+[DEBUG] 2016-06-16 11:41:33,065 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:154)
+com.mysql.jdbc.JDBC4Connection@21f91ab6
+
+[DEBUG] 2016-06-16 11:41:33,092 method:cn.scau.edu.util.MyProxyHandle.invoke(MyProxyHandle.java:48)
+com.mysql.jdbc.JDBC4Connection@21f91ab6close
+
+
+[DEBUG] 2016-06-16 11:41:58,783 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:135)
+开始检验连接的有效性
+
+[DEBUG] 2016-06-16 11:41:58,789 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:154)
+com.mysql.jdbc.JDBC4Connection@60f5d64e
+
+[DEBUG] 2016-06-16 11:41:58,952 method:cn.scau.edu.util.MyProxyHandle.invoke(MyProxyHandle.java:48)
+com.mysql.jdbc.JDBC4Connection@60f5d64eclose
+
+
+[DEBUG] 2016-06-16 12:12:37,061 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:135)
+开始检验连接的有效性
+
+[DEBUG] 2016-06-16 12:12:37,063 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:154)
+com.mysql.jdbc.JDBC4Connection@ec1ca2e
+
+[DEBUG] 2016-06-16 12:12:37,078 method:cn.scau.edu.util.MyProxyHandle.invoke(MyProxyHandle.java:48)
+com.mysql.jdbc.JDBC4Connection@ec1ca2eclose
+
+
+[DEBUG] 2016-06-16 12:12:37,079 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:135)
+开始检验连接的有效性
+
+[DEBUG] 2016-06-16 12:12:37,080 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:154)
+com.mysql.jdbc.JDBC4Connection@598da7e2
+
+[DEBUG] 2016-06-16 12:12:37,247 method:cn.scau.edu.util.MyProxyHandle.invoke(MyProxyHandle.java:48)
+com.mysql.jdbc.JDBC4Connection@598da7e2close
+
+
+[DEBUG] 2016-06-16 12:12:37,281 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:135)
+开始检验连接的有效性
+
+[DEBUG] 2016-06-16 12:12:37,282 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:154)
+com.mysql.jdbc.JDBC4Connection@7c173290
+
+[DEBUG] 2016-06-16 12:12:37,283 method:cn.scau.edu.util.MyProxyHandle.invoke(MyProxyHandle.java:48)
+com.mysql.jdbc.JDBC4Connection@7c173290close
+
+
+[DEBUG] 2016-06-16 12:12:37,283 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:135)
+开始检验连接的有效性
+
+[DEBUG] 2016-06-16 12:12:37,284 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:154)
+com.mysql.jdbc.JDBC4Connection@e54107
+
+[DEBUG] 2016-06-16 12:12:37,290 method:cn.scau.edu.util.MyProxyHandle.invoke(MyProxyHandle.java:48)
+com.mysql.jdbc.JDBC4Connection@e54107close
+
+
+[DEBUG] 2016-06-16 12:12:58,757 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:135)
+开始检验连接的有效性
+
+[DEBUG] 2016-06-16 12:12:58,758 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:154)
+com.mysql.jdbc.JDBC4Connection@25c82030
+
+[DEBUG] 2016-06-16 12:12:58,759 method:cn.scau.edu.util.MyProxyHandle.invoke(MyProxyHandle.java:48)
+com.mysql.jdbc.JDBC4Connection@25c82030close
+
+
+[DEBUG] 2016-06-16 12:12:58,760 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:135)
+开始检验连接的有效性
+
+[DEBUG] 2016-06-16 12:12:58,760 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:154)
+com.mysql.jdbc.JDBC4Connection@d9f71f8
+
+[DEBUG] 2016-06-16 12:12:58,771 method:cn.scau.edu.util.MyProxyHandle.invoke(MyProxyHandle.java:48)
+com.mysql.jdbc.JDBC4Connection@d9f71f8close
+
+
+[DEBUG] 2016-06-16 12:13:21,533 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:135)
+开始检验连接的有效性
+
+[DEBUG] 2016-06-16 12:13:21,537 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:154)
+com.mysql.jdbc.JDBC4Connection@2699d100
+
+[DEBUG] 2016-06-16 12:13:21,540 method:cn.scau.edu.util.MyProxyHandle.invoke(MyProxyHandle.java:48)
+com.mysql.jdbc.JDBC4Connection@2699d100close
+
+
+[DEBUG] 2016-06-16 12:13:21,566 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:135)
+开始检验连接的有效性
+
+[DEBUG] 2016-06-16 12:13:21,569 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:154)
+com.mysql.jdbc.JDBC4Connection@505a0b82
+
+[DEBUG] 2016-06-16 12:13:21,571 method:cn.scau.edu.util.MyProxyHandle.invoke(MyProxyHandle.java:48)
+com.mysql.jdbc.JDBC4Connection@505a0b82close
+
+
+[DEBUG] 2016-06-16 12:13:21,572 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:135)
+开始检验连接的有效性
+
+[DEBUG] 2016-06-16 12:13:21,573 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:154)
+com.mysql.jdbc.JDBC4Connection@21f91ab6
+
+[DEBUG] 2016-06-16 12:13:21,594 method:cn.scau.edu.util.MyProxyHandle.invoke(MyProxyHandle.java:48)
+com.mysql.jdbc.JDBC4Connection@21f91ab6close
+
+
+[DEBUG] 2016-06-16 12:14:22,173 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:135)
+开始检验连接的有效性
+
+[DEBUG] 2016-06-16 12:14:22,176 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:154)
+com.mysql.jdbc.JDBC4Connection@60f5d64e
+
+[DEBUG] 2016-06-16 12:14:22,178 method:cn.scau.edu.util.MyProxyHandle.invoke(MyProxyHandle.java:48)
+com.mysql.jdbc.JDBC4Connection@60f5d64eclose
+
+
+[DEBUG] 2016-06-16 12:14:35,885 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:135)
+开始检验连接的有效性
+
+[DEBUG] 2016-06-16 12:14:35,886 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:154)
+com.mysql.jdbc.JDBC4Connection@ec1ca2e
+
+[DEBUG] 2016-06-16 12:14:35,887 method:cn.scau.edu.util.MyProxyHandle.invoke(MyProxyHandle.java:48)
+com.mysql.jdbc.JDBC4Connection@ec1ca2eclose
+
+
+[DEBUG] 2016-06-16 12:14:35,887 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:135)
+开始检验连接的有效性
+
+[DEBUG] 2016-06-16 12:14:35,888 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:154)
+com.mysql.jdbc.JDBC4Connection@598da7e2
+
+[DEBUG] 2016-06-16 12:14:35,896 method:cn.scau.edu.util.MyProxyHandle.invoke(MyProxyHandle.java:48)
+com.mysql.jdbc.JDBC4Connection@598da7e2close
+
+
+[DEBUG] 2016-06-16 12:14:42,745 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:135)
+开始检验连接的有效性
+
+[DEBUG] 2016-06-16 12:14:42,747 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:154)
+com.mysql.jdbc.JDBC4Connection@7c173290
+
+[DEBUG] 2016-06-16 12:14:42,748 method:cn.scau.edu.util.MyProxyHandle.invoke(MyProxyHandle.java:48)
+com.mysql.jdbc.JDBC4Connection@7c173290close
+
+
+[DEBUG] 2016-06-16 18:59:20,349 method:cn.scau.edu.servlet.ConnectionPoolListerner.contextDestroyed(ConnectionPoolListerner.java:21)
+我(监听器)被销毁了...
+
+[DEBUG] 2016-06-16 23:20:56,691 method:cn.scau.edu.servlet.ConnectionPoolListerner.contextInitialized(ConnectionPoolListerner.java:26)
+我(监听器)被启动了
+
+[DEBUG] 2016-06-16 23:21:17,528 method:cn.scau.edu.servlet.ConnectionPoolListerner.contextDestroyed(ConnectionPoolListerner.java:21)
+我(监听器)被销毁了...
+
+[DEBUG] 2016-06-16 23:21:17,926 method:cn.scau.edu.servlet.ConnectionPoolListerner.contextInitialized(ConnectionPoolListerner.java:26)
+我(监听器)被启动了
+
+[DEBUG] 2016-06-16 23:26:59,024 method:cn.scau.edu.servlet.ConnectionPoolListerner.contextDestroyed(ConnectionPoolListerner.java:21)
+我(监听器)被销毁了...
+
+[DEBUG] 2016-06-16 23:27:07,296 method:cn.scau.edu.servlet.ConnectionPoolListerner.contextInitialized(ConnectionPoolListerner.java:26)
+我(监听器)被启动了
+
+[DEBUG] 2016-06-16 23:27:28,017 method:cn.scau.edu.servlet.ConnectionPoolListerner.contextDestroyed(ConnectionPoolListerner.java:21)
+我(监听器)被销毁了...
+
+[DEBUG] 2016-06-16 23:27:28,442 method:cn.scau.edu.servlet.ConnectionPoolListerner.contextInitialized(ConnectionPoolListerner.java:26)
+我(监听器)被启动了
+
+[DEBUG] 2016-06-16 23:30:02,889 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:135)
+开始检验连接的有效性
+
+[DEBUG] 2016-06-16 23:30:02,920 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:154)
+com.mysql.jdbc.JDBC4Connection@6ce4bd98
+
+[DEBUG] 2016-06-16 23:30:02,946 method:cn.scau.edu.util.MyProxyHandle.invoke(MyProxyHandle.java:48)
+com.mysql.jdbc.JDBC4Connection@6ce4bd98close
+
+
+[DEBUG] 2016-06-16 23:30:14,841 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:135)
+开始检验连接的有效性
+
+[DEBUG] 2016-06-16 23:30:14,844 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:154)
+com.mysql.jdbc.JDBC4Connection@30221e66
+
+[DEBUG] 2016-06-16 23:30:14,847 method:cn.scau.edu.util.MyProxyHandle.invoke(MyProxyHandle.java:48)
+com.mysql.jdbc.JDBC4Connection@30221e66close
+
+
+[DEBUG] 2016-06-16 23:30:15,043 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:135)
+开始检验连接的有效性
+
+[DEBUG] 2016-06-16 23:30:15,046 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:154)
+com.mysql.jdbc.JDBC4Connection@22c4272e
+
+[DEBUG] 2016-06-16 23:30:15,050 method:cn.scau.edu.util.MyProxyHandle.invoke(MyProxyHandle.java:48)
+com.mysql.jdbc.JDBC4Connection@22c4272eclose
+
+
+[DEBUG] 2016-06-16 23:30:15,052 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:135)
+开始检验连接的有效性
+
+[DEBUG] 2016-06-16 23:30:15,055 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:154)
+com.mysql.jdbc.JDBC4Connection@52a66d9c
+
+[DEBUG] 2016-06-16 23:30:15,076 method:cn.scau.edu.util.MyProxyHandle.invoke(MyProxyHandle.java:48)
+com.mysql.jdbc.JDBC4Connection@52a66d9cclose
+
+
+[DEBUG] 2016-06-16 23:30:31,736 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:135)
+开始检验连接的有效性
+
+[DEBUG] 2016-06-16 23:30:31,738 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:154)
+com.mysql.jdbc.JDBC4Connection@7cc8daec
+
+[DEBUG] 2016-06-16 23:30:31,739 method:cn.scau.edu.util.MyProxyHandle.invoke(MyProxyHandle.java:48)
+com.mysql.jdbc.JDBC4Connection@7cc8daecclose
+
+
+[DEBUG] 2016-06-16 23:30:31,740 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:135)
+开始检验连接的有效性
+
+[DEBUG] 2016-06-16 23:30:31,741 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:154)
+com.mysql.jdbc.JDBC4Connection@277a12af
+
+[DEBUG] 2016-06-16 23:30:31,754 method:cn.scau.edu.util.MyProxyHandle.invoke(MyProxyHandle.java:48)
+com.mysql.jdbc.JDBC4Connection@277a12afclose
+
+
+[DEBUG] 2016-06-16 23:33:37,831 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:135)
+开始检验连接的有效性
+
+[DEBUG] 2016-06-16 23:33:37,833 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:154)
+com.mysql.jdbc.JDBC4Connection@7cec41a5
+
+[DEBUG] 2016-06-16 23:33:37,835 method:cn.scau.edu.util.MyProxyHandle.invoke(MyProxyHandle.java:48)
+com.mysql.jdbc.JDBC4Connection@7cec41a5close
+
+
+[DEBUG] 2016-06-16 23:33:37,846 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:135)
+开始检验连接的有效性
+
+[DEBUG] 2016-06-16 23:33:37,848 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:154)
+com.mysql.jdbc.JDBC4Connection@179b2302
+
+[DEBUG] 2016-06-16 23:33:37,849 method:cn.scau.edu.util.MyProxyHandle.invoke(MyProxyHandle.java:48)
+com.mysql.jdbc.JDBC4Connection@179b2302close
+
+
+[DEBUG] 2016-06-16 23:33:37,849 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:135)
+开始检验连接的有效性
+
+[DEBUG] 2016-06-16 23:33:37,851 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:154)
+com.mysql.jdbc.JDBC4Connection@7ef37b5e
+
+[DEBUG] 2016-06-16 23:33:37,859 method:cn.scau.edu.util.MyProxyHandle.invoke(MyProxyHandle.java:48)
+com.mysql.jdbc.JDBC4Connection@7ef37b5eclose
+
+
+[DEBUG] 2016-06-16 23:33:52,922 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:135)
+开始检验连接的有效性
+
+[DEBUG] 2016-06-16 23:33:52,923 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:154)
+com.mysql.jdbc.JDBC4Connection@33669b7a
+
+[DEBUG] 2016-06-16 23:33:52,924 method:cn.scau.edu.util.MyProxyHandle.invoke(MyProxyHandle.java:48)
+com.mysql.jdbc.JDBC4Connection@33669b7aclose
+
+
+[DEBUG] 2016-06-16 23:33:52,935 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:135)
+开始检验连接的有效性
+
+[DEBUG] 2016-06-16 23:33:52,936 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:154)
+com.mysql.jdbc.JDBC4Connection@6ce4bd98
+
+[DEBUG] 2016-06-16 23:33:52,937 method:cn.scau.edu.util.MyProxyHandle.invoke(MyProxyHandle.java:48)
+com.mysql.jdbc.JDBC4Connection@6ce4bd98close
+
+
+[DEBUG] 2016-06-16 23:33:52,938 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:135)
+开始检验连接的有效性
+
+[DEBUG] 2016-06-16 23:33:52,938 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:154)
+com.mysql.jdbc.JDBC4Connection@30221e66
+
+[DEBUG] 2016-06-16 23:33:52,949 method:cn.scau.edu.util.MyProxyHandle.invoke(MyProxyHandle.java:48)
+com.mysql.jdbc.JDBC4Connection@30221e66close
+
+
+[DEBUG] 2016-06-16 23:33:59,612 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:135)
+开始检验连接的有效性
+
+[DEBUG] 2016-06-16 23:33:59,614 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:154)
+com.mysql.jdbc.JDBC4Connection@22c4272e
+
+[DEBUG] 2016-06-16 23:33:59,615 method:cn.scau.edu.util.MyProxyHandle.invoke(MyProxyHandle.java:48)
+com.mysql.jdbc.JDBC4Connection@22c4272eclose
+
+
+[DEBUG] 2016-06-16 23:33:59,625 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:135)
+开始检验连接的有效性
+
+[DEBUG] 2016-06-16 23:33:59,626 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:154)
+com.mysql.jdbc.JDBC4Connection@52a66d9c
+
+[DEBUG] 2016-06-16 23:33:59,627 method:cn.scau.edu.util.MyProxyHandle.invoke(MyProxyHandle.java:48)
+com.mysql.jdbc.JDBC4Connection@52a66d9cclose
+
+
+[DEBUG] 2016-06-16 23:33:59,627 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:135)
+开始检验连接的有效性
+
+[DEBUG] 2016-06-16 23:33:59,627 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:154)
+com.mysql.jdbc.JDBC4Connection@7cc8daec
+
+[DEBUG] 2016-06-16 23:33:59,638 method:cn.scau.edu.util.MyProxyHandle.invoke(MyProxyHandle.java:48)
+com.mysql.jdbc.JDBC4Connection@7cc8daecclose
+
+
+[DEBUG] 2016-06-16 23:34:03,816 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:135)
+开始检验连接的有效性
+
+[DEBUG] 2016-06-16 23:34:03,817 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:154)
+com.mysql.jdbc.JDBC4Connection@277a12af
+
+[DEBUG] 2016-06-16 23:34:03,818 method:cn.scau.edu.util.MyProxyHandle.invoke(MyProxyHandle.java:48)
+com.mysql.jdbc.JDBC4Connection@277a12afclose
+
+
+[DEBUG] 2016-06-16 23:34:03,819 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:135)
+开始检验连接的有效性
+
+[DEBUG] 2016-06-16 23:34:03,819 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:154)
+com.mysql.jdbc.JDBC4Connection@7cec41a5
+
+[DEBUG] 2016-06-16 23:34:03,833 method:cn.scau.edu.util.MyProxyHandle.invoke(MyProxyHandle.java:48)
+com.mysql.jdbc.JDBC4Connection@7cec41a5close
+
+
+[DEBUG] 2016-06-16 23:34:23,163 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:135)
+开始检验连接的有效性
+
+[DEBUG] 2016-06-16 23:34:23,164 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:154)
+com.mysql.jdbc.JDBC4Connection@179b2302
+
+[DEBUG] 2016-06-16 23:34:23,165 method:cn.scau.edu.util.MyProxyHandle.invoke(MyProxyHandle.java:48)
+com.mysql.jdbc.JDBC4Connection@179b2302close
+
+
+[DEBUG] 2016-06-16 23:41:56,883 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:135)
+开始检验连接的有效性
+
+[DEBUG] 2016-06-16 23:41:56,884 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:154)
+com.mysql.jdbc.JDBC4Connection@7ef37b5e
+
+[DEBUG] 2016-06-16 23:41:56,885 method:cn.scau.edu.util.MyProxyHandle.invoke(MyProxyHandle.java:48)
+com.mysql.jdbc.JDBC4Connection@7ef37b5eclose
+
+
+[DEBUG] 2016-06-16 23:41:56,886 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:135)
+开始检验连接的有效性
+
+[DEBUG] 2016-06-16 23:41:56,887 method:cn.scau.edu.util.DataBasePool2.getConnection(DataBasePool2.java:154)
+com.mysql.jdbc.JDBC4Connection@33669b7a
+
+[DEBUG] 2016-06-16 23:41:56,894 method:cn.scau.edu.util.MyProxyHandle.invoke(MyProxyHandle.java:48)
+com.mysql.jdbc.JDBC4Connection@33669b7aclose
+
+

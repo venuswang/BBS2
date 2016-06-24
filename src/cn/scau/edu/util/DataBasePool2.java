@@ -1,4 +1,4 @@
-package cn.scau.edu.util;
+﻿package cn.scau.edu.util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -22,7 +22,7 @@ public class DataBasePool2 {
 	private static Log log = LogFactory.getLog(DataBasePool2.class);
 	private static String url = "jdbc:mysql://localhost:3306/bbs1";
 	private static String user = "root";
-	private static String password = "8880967wgj";
+	private static String password = "mysql";
 	private static String className = "com.mysql.jdbc.Driver";
 	private static LinkedList<Connection> dbpool = new LinkedList<Connection>();
 	private long lastUseTime = 0;

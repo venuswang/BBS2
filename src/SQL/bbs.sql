@@ -1,11 +1,11 @@
-#´´½¨Êı¾İ¿âbbs1
+#åˆ›å»ºbbs1
 create database bbs1;
 
-#Ê¹ÓÃ¸Õ¸Õ´´½¨µÄÊı¾İ¿âbbs1
+#ä½¿ç”¨bbs1
 use bbs1;
 
 
-#´´½¨ÓÃ»§ĞÅÏ¢±í
+#åˆ›å»ºç”¨æˆ·ä¿¡æ¯è¡¨
 create table author
 (
 	id int primary key auto_increment,
@@ -16,7 +16,7 @@ create table author
 	introduce TINYTEXT
 );
 
-#´´½¨ÓÃ»§µÄÕË»§ÃÜÂë±í
+#åˆ›å»ºç”¨æˆ·è´¦æˆ·å¯†ç è¡¨
 create table voucher
 (
 	voucherid int,
@@ -25,7 +25,7 @@ create table voucher
 	constraint voucher_author foreign key(voucherid) references author(id)
 );
 
-#´´½¨Ìû×Ó±í
+#åˆ›å»ºå¸–å­è¡¨
 create table article 
 (
 id int primary key auto_increment,
@@ -44,7 +44,7 @@ constraint text_author foreign key(authorid) references author(id)
 
 use bbs1;
 
-#´´½¨³¬¼¶¹ÜÀíÔ±
+#åˆ›å»ºç³»ç»Ÿè¶…çº§ç®¡ç†å‘˜è¡¨
 create table manager
 (
 	id int primary key auto_increment,
@@ -52,13 +52,13 @@ create table manager
 	password varchar(50) not null
 );
 
-#²åÈë³¬¼¶¹ÜÀíÔ±ÕËºÅºÍÃÜÂë
-insert into manager values (null,'teacher','teacher');
+#æ’å…¥ç®¡ç†å‘˜åˆå§‹ä¿¡æ¯
+insert into manager values (null,'adminer','adminer');
 
-#×¢ÒâÒÔÏÂË³Ğò²»ÄÜÂÒ
-#³õÊ¼»¯ÓÃ»§¸öÈËĞÅÏ¢¡¢ÕËºÅºÍÃÜÂë
+#ä»¥ä¸‹æ–‡ä»¶çš„æ‰§è¡Œé¡ºåºæœ‰ä¸€å®šçš„è¦æ±‚
+#å¯¹è¡¨authorå’ŒVoucherè¿›è¡Œåˆå§‹åŒ–
 #source  author.sql
 #source voucher.sql
 
-#³õÊ¼»¯Ìû×ÓÊı¾İ
+#å¯¹å¸–å­è¡¨è¿›è¡Œæ•°æ®å¡«å……
 #source article.sql
